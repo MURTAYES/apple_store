@@ -109,13 +109,6 @@ if (isset($_POST['sign_up'])) {
         $conn->close();
         exit();
     }
-
-    // amail_validate
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email format. Please enter a valid email address.";
-        exit();
-    }
-
     // Check if the email contains the "@" symbol
     if (strpos($email, "@") === false) {
         echo "Email address must contain the '@' symbol.";
@@ -123,7 +116,7 @@ if (isset($_POST['sign_up'])) {
     }
 
 
-    // Perform SQL insertion
+    // Insertiing data to users table in database
     $sql = "INSERT INTO users (first_name, last_name, gender, email, phone, password, address)
             VALUES ('$fname', '$lname', '$gender', '$email', '$phone', '$pass', '$address')";
 
