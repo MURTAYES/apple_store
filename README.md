@@ -14,29 +14,30 @@ The main purpose of this project to introduce ourselves to the concepts of Relat
 
 ### Installing & Configuration
 
-0. Install xampp server
+0. Install xampp server:
 
 ```
    https://www.apachefriends.org/download.html
 ```
 
-1. Clone repository
+1. Clone repository:
 
+clone this repository to local machine
 ```
-    clone this repository to local machine
     C:\xampp\htdocs
 ```
 
-2. Import the sql file
-
+2. Import the sql file:
+   
+ Import sql file to your server
 ```
-   Import sql file to your server
-    apple.sql
+   apple.sql
 ```
-3. Run the server
-
-```
+3. Run the server:
+   
    Go to your browser and type:
+
+```
      http://localhost/apple_store/index.php
 ```
 
