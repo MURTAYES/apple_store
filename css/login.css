@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+*{
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: f2f2f2;
+    padding: 0 5px;
+}
+.container {
+    max-width: 300px;
+    width: 100%;
+    background-color: #f1f1f1;
+    margin:220px auto ;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+.container .title{
+    display: flex;
+}
+.container .title img{
+    height: 40px;
+    width: 40px;
+}
+
+.container h2{
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+.container .form{
+    width: 100%;
+}
+.container .form .input_field{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.container .form .input_field label{
+    width: 110px;
+    margin-right: 10px;
+    font-size: 15px;
+}
+.container .form .input_field .input
+{
+    width: 100%;
+    outline: none;
+    border: 1px solid #333;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 3px;
+}
+.container .form .input_field .btn{
+    width: 80px;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 0;
+    background-color: #333;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    margin: 12px auto 0 auto;
+}
+.container .form .input_field .btn:hover{
+    background-color: #555;
+}
+.container .form .signup_here{
+    margin-top: 20px;
+}
+.container .form .signup_here a{
+    color: #333;
+    cursor: pointer;
+}
+.container .form .signup_here a:hover{
+    color:#111;
+}
