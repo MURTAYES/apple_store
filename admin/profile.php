@@ -1,14 +1,19 @@
 <?php
 include "../db_connection.php";
 session_start();
-// Check if the admin is logged in and if the admin ID is set in the session
 if (isset($_SESSION["admin_id"])) {
 } else {
-    // Redirect or display an error if the admin is not logged in
-    header("Location: login.php"); // Redirect to the login page, for example
+    header("Location: login.php");
     exit;
 }
+
+// admin details
+$id = $_SESSION["admin_id"];
+$query = "SELECT * FROM admins WHERE  admin_id = '$id'";
+$result = mysqli_query($conn, $query);
+$details = mysqli_fetch_assoc($result);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -216,7 +221,7 @@ if (isset($_SESSION["admin_id"])) {
     <div id="user-profile">
         <a href="profile.php">
             <img src="img/m_admin.jpeg" alt="User Profile">
-            <p>Murtayes</p>
+            <p><?php echo $details['username'] ?></p>
         </a>
     </div>
     <div id="log-out">
@@ -234,15 +239,15 @@ if (isset($_SESSION["admin_id"])) {
             <div class="form">
                 <div class="input_field">
                     <label>User Name</label>
-                    <input type="text" class="input" name="fname" required>
+                    <input type="text" value="<?php echo $details['username'] ?>" class="input" name="username" required>
+                </div>
+                <div class="input_field">
+                    <label>Full Name</label>
+                    <input type="text" value="<?php echo $details['full_name'] ?>" class="input" name="full_name" required>
                 </div>
                 <div class="input_field">
                     <label>Email Address</label>
-                    <input type="text" class="input" name="email" required>
-                </div>
-                <div class="input_field">
-                    <label>Phone Number</label>
-                    <input type="text" class="input" name="phone" required>
+                    <input type="text" value="<?php echo $details['email'] ?>" class="input" name="email" required>
                 </div>
                 <div class="input_field">
                     <label>Password</label>
@@ -253,42 +258,39 @@ if (isset($_SESSION["admin_id"])) {
                     <input type="password" class="input" name="conpass" required>
                 </div>
                 <div class="input_field">
-                    <input type="submit" value="Update details" class="btn" name="sign_up">
+                    <input type="submit" value="Update details" class="btn" name="update">
                 </div>
             </div>
         </form>
+
+<?php
+
+if (isset($_POST['update'])) {
+    $username = $_POST["username"];
+    $full_name =  $_POST["full_name"];
+    $email = $_POST['email'];
+    $pass = $_POST['pass'];
+    $conpass = $_POST['conpass'];
+
+
+    if ($pass !== $conpass) {
+        echo "Password and Confirm Password do not match. Please go back and try again.";
+    }
+
+
+    // Insertiing data to users table in database
+    $sql = "UPDATE admins SET username = '$username', full_name = '$full_name', email = '$email', password = '$pass' WHERE admin_id = '$id' ";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "User information updated successfully.";
+    } else {
+        echo "Error updating user information: " . mysqli_error($conn);
+    }
+}
+// Close the database connection
+$conn->close();
+?>
     </div>
 </body>
 
 </html>
-
-<?php
-// Check if the admin is logged in and if the admin ID is set in the session
-if (isset($_SESSION["admin_id"])) {
-    $adminId = $_SESSION["admin_id"];
-    // Fetch admin details from the database based on the admin ID
-    $query = "SELECT * FROM admins WHERE admin_id = $adminId";
-    $result = mysqli_query($conn, $query);
-
-    if ($result && mysqli_num_rows($result) == 1) {
-        $adminData = mysqli_fetch_assoc($result);
-
-        // Now you can access the admin's details like $adminData['admin_name'], $adminData['email'], etc.
-        $adminName = $adminData['admin_name'];
-        $adminEmail = $adminData['email'];
-        // Add more fields as needed
-
-        // Display the admin's details in the HTML content
-        echo "<h1>Welcome, $adminName</h1>";
-        echo "<p>Email: $adminEmail</p>";
-        // Add more HTML elements to display other admin details
-    } else {
-        // Handle the case where no admin details are found
-        echo "Admin details not found.";
-    }
-} else {
-    // Redirect or display an error if the admin is not logged in
-    header("Location: login.php"); // Redirect to the login page, for example
-    exit;
-}
-?>

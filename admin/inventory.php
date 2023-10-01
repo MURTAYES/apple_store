@@ -196,7 +196,7 @@ if (isset($_SESSION["admin_id"])) {
                             <td> $row[price]        </td>
                             <td> $row[quantity]     </td>
                             <td> $row[image]        </td>
-                            <td> <a href='inven_update.php?pid=$row[product_id]'>Update</a> </td>
+                            <td> <a href='inventupdate.php?pid={$row['product_id']}'>Edit</a> </td>
                          </tr>";
                 }
             } else {

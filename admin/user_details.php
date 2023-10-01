@@ -8,6 +8,10 @@ if (isset($_SESSION["admin_id"])) {
     header("Location: login.php"); // Redirect to the login page, for example
     exit;
 }
+$id=$_SESSION["admin_id"];
+$query = "SELECT * FROM admins WHERE  admin_id = '$id'";
+$result = mysqli_query($conn, $query);
+$details = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -160,7 +164,7 @@ if (isset($_SESSION["admin_id"])) {
     <div id="user-profile">
         <a href="profile.php">
             <img src="img/m_admin.jpeg" alt="User Profile">
-            <p>Murtayes</p>
+            <p><?php echo $details['username'] ?></p>
         </a>
     </div>
     <div id="log-out">

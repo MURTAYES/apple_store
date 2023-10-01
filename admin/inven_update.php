@@ -1,27 +1,22 @@
 <?php
 include "../db_connection.php";
 session_start();
-// Check if the admin is logged in and if the admin ID is set in the session
 if (isset($_SESSION["admin_id"])) {
 } else {
-    // Redirect or display an error if the admin is not logged in
-    header("Location: login.php"); // Redirect to the login page, for example
+    header("Location: login.php");
     exit;
 }
-$id = $_GET['pid'];
-$query = "SELECT * FROM products WHERE  product_id = '$pid'";
+
+// admin details
+$id = $_SESSION["admin_id"];
+$query = "SELECT * FROM admins WHERE  admin_id = '$id'";
 $result = mysqli_query($conn, $query);
+$details = mysqli_fetch_assoc($result);
 
-$productData = mysqli_fetch_assoc($result);
-
-// Now you can access all the product fields
-$productId = $productData['product_id'];
-$productName = $productData['name'];
-$productDescription = $productData['description'];
-$productPrice = $productData['price'];
-$productQuantity = $productData['quantity'];
-$productImage = $productData['image'];
-$categoryId = $productData['category_id'];
+$pid=$_GET['pid'];
+$query__roduct = "SELECT * FROM products WHERE  product_id = '$pid'";
+$result_product = mysqli_query($conn, $query__roduct);
+$product = mysqli_fetch_assoc($result_product);
 ?>
 
 <!DOCTYPE html>
@@ -231,7 +226,7 @@ $categoryId = $productData['category_id'];
     <div id="user-profile">
         <a href="profile.php">
             <img src="img/m_admin.jpeg" alt="User Profile">
-            <p>Murtayes</p>
+            <p><?php echo $details['username'] ?></p>
         </a>
     </div>
     <div id="log-out">
@@ -242,7 +237,8 @@ $categoryId = $productData['category_id'];
         </a>
     </div>
     <div class="content">
-        <form action="#" method="post">
+
+    <form action="#" method="post">
             <div class="title">
                 <h2>User details</h2>
             </div>
@@ -250,29 +246,54 @@ $categoryId = $productData['category_id'];
             <div class="form">
                 <div class="input_field">
                     <label>Product_id</label>
-                    <input type="text" value="<?php echo $productId; ?>" class="input" name="fname" required>
+                    <input type="text" value="<?php echo $product['product_id'];?>" class="input" name="pid" required>
                 </div>
                 <div class="input_field">
                     <label>Name</label>
-                    <input type="text" value="name" class="input" name="email" required>
+                    <input type="text" value="<?php echo $product['name'];?>" class="input" name="name" required>
                 </div>
                 <div class="input_field">
                     <label>Price</label>
-                    <input type="text" value="price" class="input" name="phone" required>
+                    <input type="text" value="<?php echo $product['price'];?>" class="input" name="price" required>
                 </div>
                 <div class="input_field">
                     <label>Quantity</label>
-                    <input type="text" value="quantity" class="input" name="conpass" required>
+                    <input type="text" value="<?php echo $product['quantity'];?>" class="input" name="quan" required>
                 </div>
                 <div class="input_field">
                     <label>category_id</label>
-                    <input type="text" value="category_id" class="input" name="conpass" required>
+                    <input type="text" value="<?php echo $product['category_id'];?>" class="input" name="c_id" required>
                 </div>
                 <div class="input_field">
-                    <input type="submit" value="Update details" class="btn" name="sign_up">
+                    <input type="submit" value="Update details" class="btn" name="update">
                 </div>
             </div>
         </form>
+<?php
+
+if (isset($_POST['update'])) {
+    $pid = $_POST['pid'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $quan = $_POST['quan'];
+    $c_id = $_POST['c_id'];
+
+    // Perform validation if needed
+
+    // Construct an SQL UPDATE query
+    $sql = "UPDATE products SET name = '$name', price = '$price', quantity = '$quan', category_id = '$c_id' WHERE product_id = $pid";
+
+    // Execute the query
+    if (mysqli_query($conn, $sql)) {
+        echo "Product details updated successfully.";
+    } else {
+        echo "Error updating product details: " . mysqli_error($conn);
+    }
+
+    // Close the database connection if needed
+    mysqli_close($conn);
+}
+?>
     </div>
 </body>
 
