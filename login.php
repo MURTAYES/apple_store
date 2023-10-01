@@ -61,7 +61,7 @@ if (isset($_POST['log_in'])) {
         $_SESSION["admin_id"] = $adminId;
 
         // Redirect to the dashboard or another page
-        header("Location: admin/user_details.php");
+        header("Location: admin/admindashboard.php");
         exit;
       }elseif(mysqli_num_rows($result_user) == 1){
          $_SESSION["username"] = $email; // Set the username to the user's email (you can change this)

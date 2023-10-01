@@ -1,17 +1,5 @@
 <?php
-include "../db_connection.php";
-session_start();
-if (isset($_SESSION["admin_id"])) {
-} else {
-    header("Location: login.php");
-    exit;
-}
-
-// admin details
-$id = $_SESSION["admin_id"];
-$query = "SELECT * FROM admins WHERE  admin_id = '$id'";
-$result = mysqli_query($conn, $query);
-$details = mysqli_fetch_assoc($result);
+include('sidebar.php');
 
 $pid=$_GET['pid'];
 $query__roduct = "SELECT * FROM products WHERE  product_id = '$pid'";
@@ -28,102 +16,6 @@ $product = mysqli_fetch_assoc($result_product);
     <link rel="shortcut icon" href="../component/image/apple(1).png" type="image/x-icon">
     <title>Profile</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        #sidebar {
-            position: fixed;
-            width: 200px;
-            height: 100%;
-            background: #333;
-            padding-top: 20px;
-            color: #fff;
-        }
-
-        #sidebar .logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        #sidebar .logo img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-        }
-
-        #sidebar ul {
-            padding: 0;
-        }
-
-        #sidebar ul li {
-            list-style-type: none;
-            padding: 10px 10px;
-        }
-
-        #sidebar ul li a {
-            text-decoration: none;
-            color: #fff;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-
-        #sidebar ul li a:hover {
-            background: #444;
-            color: #000;
-        }
-
-        #log-out {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .logout .btn {
-            width: 80px;
-            padding: 8px 10px;
-            font-size: 15px;
-            border: 0;
-            background-color: #333;
-            color: #fff;
-            border-radius: 3px;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .logout .btn:hover {
-            background-color: #555;
-        }
-
-        #user-profile {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        #user-profile img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        #user-profile a {
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-        }
-
-        #user-profile a p {
-            display: flex;
-            align-items: center;
-        }
 
         .content {
             margin-left: 220px;
@@ -212,32 +104,7 @@ $product = mysqli_fetch_assoc($result_product);
 </head>
 
 <body>
-    <div id="sidebar">
-        <div class="logo">
-            <img src="../component/image/apple.png" alt="Logo">
-        </div>
-        <ul>
-            <li><a href="#" id="dashboard-option">Dashboard</a></li>
-            <li><a href="inventory.php" id="inventory-option">Inventory</a></li>
-            <li><a href="user_details.php" id="user-details-option">User Details</a></li>
-        </ul>
-
-    </div>
-    <div id="user-profile">
-        <a href="profile.php">
-            <img src="img/m_admin.jpeg" alt="User Profile">
-            <p><?php echo $details['username'] ?></p>
-        </a>
-    </div>
-    <div id="log-out">
-        <a href="../logout.php">
-            <div class="logout">
-                <input type="submit" value="Log Out" name="log_in" class="btn">
-            </div>
-        </a>
-    </div>
     <div class="content">
-
     <form action="#" method="post">
             <div class="title">
                 <h2>User details</h2>
