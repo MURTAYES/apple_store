@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2023 at 09:12 AM
+-- Generation Time: Oct 01, 2023 at 04:28 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -40,7 +40,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `username`, `full_name`, `email`, `password`) VALUES
-(5001, 'murtayes', 'Murtayes Jarif', 'murtayes.jarif@gmail.com', '52743');
+(5001, 'murtayes', 'Murtayes Jarif', 'murtayes.jarif@gmail.com', '52743'),
+(5003, 'test', 'Admin Test', 'test', '123');
 
 -- --------------------------------------------------------
 
@@ -53,6 +54,13 @@ CREATE TABLE `categories` (
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`category_id`, `name`, `description`) VALUES
+(1, 'Phone', 'Iphone');
 
 -- --------------------------------------------------------
 
@@ -84,6 +92,13 @@ CREATE TABLE `products` (
   `image` varchar(255) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`product_id`, `name`, `description`, `price`, `quantity`, `image`, `category_id`) VALUES
+(101, 'iphone 15 pro', 'xyz', 1500.00, 10, '', 1);
 
 -- --------------------------------------------------------
 
@@ -180,13 +195,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5003;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5004;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -198,7 +213,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `shipping`
