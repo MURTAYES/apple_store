@@ -22,9 +22,13 @@ The main purpose of this project to introduce ourselves to the concepts of Relat
 
 1. Clone repository:
 
-clone this repository to local machine
+Go to this location to your local machine
 ```
     C:\xampp\htdocs
+```
+Git bash
+```
+   git clone https://github.com/MURTAYES/apple_store.git
 ```
 
 2. Import the sql file:
