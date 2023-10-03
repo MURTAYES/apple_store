@@ -95,6 +95,7 @@ if (isset($_POST['sign_up'])) {
         echo "Gender is required. Please go back and fill in the required fields.";
     }
 
+    //check if password and confirm password matches
     if ($pass !== $conpass) {
         echo "Password and Confirm Password do not match. Please go back and try again.";
     }
@@ -126,6 +127,5 @@ if (isset($_POST['sign_up'])) {
         echo "Error: " . $conn->error;
     }
 }
-// Close the database connection
 $conn->close();
 ?>

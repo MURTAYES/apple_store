@@ -143,19 +143,12 @@ $product = mysqli_fetch_assoc($result_product);
             $quan = $_POST['quan'];
             $c_id = $_POST['c_id'];
 
-            // Perform validation if needed
-
-            // Construct an SQL UPDATE query
             $sql = "UPDATE products SET name = '$name', price = '$price', quantity = '$quan', category_id = '$c_id' WHERE product_id = $pid";
-
-            // Execute the query
             if (mysqli_query($conn, $sql)) {
                 echo "Product details updated successfully.";
             } else {
                 echo "Error updating product details: " . mysqli_error($conn);
             }
-
-            // Close the database connection if needed
             mysqli_close($conn);
         }
         ?>

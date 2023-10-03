@@ -71,6 +71,7 @@ include('sidebar.php');
             color: #fff;
             border-radius: 3px;
             cursor: pointer;
+            text-decoration: none;
         }
         img{
             height: 90px;

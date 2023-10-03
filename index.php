@@ -27,10 +27,10 @@
             <div class="utility">
                 <div class="search-box">
                     <input type="text" placeholder="Search">
-                    <img src="component/image/search.svg" alt="Search Icon">
+                    <img src="img/component/image/search.svg" alt="Search Icon">
                 </div>
-                <img src="component/image/shopping-cart.svg" alt="Cart Icon" class="cart-icon">
-                <a href="login.php"><img src="component/image/proile.svg" alt="Cart Icon" class="profile"></a>
+                <img src="img/component/image/shopping-cart.svg" alt="Cart Icon" class="cart-icon">
+                <a href="login.php"><img src="img/component/image/proile1.svg" alt="Profile" class="profile"></a>
             </div>
         </nav>
     </header>

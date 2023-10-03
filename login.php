@@ -49,28 +49,26 @@ if (isset($_POST['log_in'])) {
 
    // Check if the email and password match an admin record in the database
    $query_admin = "SELECT admin_id FROM admins WHERE email = '$email' AND password = '$pass'";
-    $result_admin = mysqli_query($conn, $query_admin);
+   $result_admin = mysqli_query($conn, $query_admin);
+
+   // Check if the email and password match an users record in the database
    $query_user = "SELECT * FROM users WHERE email = '$email' AND password = '$pass'";
    $result_user = mysqli_query($conn, $query_user);
 
+   if (mysqli_num_rows($result_admin) == 1) {
+      $row = mysqli_fetch_assoc($result_admin);
+      $adminId = $row['admin_id'];
 
-      if (mysqli_num_rows($result_admin) == 1) {
-         $row = mysqli_fetch_assoc($result_admin);
-        $adminId = $row['admin_id'];
-        // Set the admin ID in the session
-        $_SESSION["admin_id"] = $adminId;
-
-        // Redirect to the dashboard or another page
-        header("Location: admin/admindashboard.php");
-        exit;
-      }elseif(mysqli_num_rows($result_user) == 1){
-         $_SESSION["username"] = $email; // Set the username to the user's email (you can change this)
-         header("Location: user/dashboard.php"); // Redirect to the dashboard or another page
-         exit;
-      } else {
-         // Login failed: no matching user found
-         echo "Login failed. Please check your email and password.";
-      }
+      $_SESSION["admin_id"] = $adminId;
+      header("Location: admin/admindashboard.php");
+      exit;
+   } elseif (mysqli_num_rows($result_user) == 1) {
+      $_SESSION["username"] = $email;
+      header("Location: user/dashboard.php");
+      exit;
+   } else {
+      echo "Login failed. Please check your email and password.";
    }
+}
 
 ?>

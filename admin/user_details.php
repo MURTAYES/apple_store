@@ -54,7 +54,7 @@ include('sidebar.php');
                 <th>Address</th>
             </tr>
             <?php
-            // Retrieve User Data and populate the table
+            // Retrieve User Data from table
             $sql = "SELECT * FROM users";
             $result = $conn->query($sql);
 

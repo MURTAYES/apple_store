@@ -67,7 +67,7 @@ $details = mysqli_fetch_assoc($result);
 
         #sidebar ul li a:hover {
             background: #444;
-            color: #000;
+            color: #fff;
         }
 
         #log-out {
@@ -95,7 +95,7 @@ $details = mysqli_fetch_assoc($result);
         }
 
         #user-profile {
-            position: absolute;
+            position: fixed;
             bottom: 20px;
             left: 20px;
             display: flex;

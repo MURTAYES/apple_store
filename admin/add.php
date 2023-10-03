@@ -89,8 +89,6 @@ include('sidebar.php');
             border-radius: 5px;
             margin-left: 20px;
         }
-
-        /* Style the input field to be hidden */
         input[type="file"] {
             display: none;
         }
@@ -156,15 +154,14 @@ include('sidebar.php');
             $categoryResult = mysqli_query($conn, $checkCategory);
 
             if ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
-                // Category exists, retrieve its category_id
                 $category_id = $categoryRow['category_id'];
 
                 // Upload the image
-                $targetDirectory = 'product/';
+                $targetDirectory = '../img/product/';
                 $imageFileName = $_FILES['image']['name'];
                 $targetPath = $targetDirectory . $imageFileName;
 
-                // Check if the file is an image and move it to the target directory
+                // Check for image and move it to the target directory
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
 
                     // Inserting data into the "products" table with the image path
@@ -177,15 +174,12 @@ include('sidebar.php');
                         echo "Error: " . $conn->error;
                     }
                 } else {
-                    // Image upload failed, handle this case (e.g., display an error message)
                     echo "Image upload failed. Please try again.";
                 }
             } else {
-                // Category does not exist, handle this case (e.g., display an error message)
                 echo "Invalid category name. Please choose a valid category.";
             }
         }
-        // Close the database connection
         $conn->close();
         ?>
 

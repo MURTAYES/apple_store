@@ -6,45 +6,44 @@
     box-sizing: border-box;
 }
 
-/* Style the header and navigation bar */
+
 header {
-    background-color: #333; /* Background color for the header */
-    color: #fff; /* Text color for the header */
-    padding: 10px 0; /* Adjust padding as needed */
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
 }
 
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1200px; /* Set the maximum width for the navigation bar */
-    margin: 0 auto; /* Center the navigation bar horizontally */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Style the logo */
+
 .logo img {
-    width: 50px; /* Adjust the logo width as needed */
-    height: 50px; /* Adjust the logo height as needed */
-    margin-right: 20px; /* Add spacing between the logo and options */
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
 }
 
-/* Style the navigation options */
+
 ul.menu {
     list-style: none;
     display: flex;
 }
 
 ul.menu li {
-    margin-right: 20px; /* Add spacing between options */
+    margin-right: 20px;
 }
 
-/* Style the menu links */
+
 ul.menu li a {
-    text-decoration: none; /* Remove underlines from links */
-    color: #fff; /* Text color for links */
+    text-decoration: none;
+    color: #fff;
 }
 
-/* Style the utility section containing the search box and cart icon */
 .utility {
     display: flex;
     align-items: center;
@@ -54,33 +53,31 @@ ul.menu li a {
 .search-box {
     display: flex;
     align-items: center;
-    background-color: #fff; /* Background color for the search box */
+    background-color: #fff;
     border-radius: 5px;
     padding: 5px;
-    margin-right: 60px; /* Add spacing between the search box and cart icon */
+    margin-right: 60px;
 }
 
 .search-box input[type="text"] {
     border: none;
     outline: none;
-    width: 100px; /* Adjust the width of the search input */
+    width: 100px;
     padding: 5px;
 }
 
 .search-box img {
-    width: 20px; /* Adjust the search icon width */
-    height: 20px; /* Adjust the search icon height */
-    margin-left: 5px; /* Add spacing between the search input and icon */
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
 }
-
-/* Style the cart icon */
 .cart-icon {
-    width: 30px; /* Adjust the cart icon width */
-    height: 30px; /* Adjust the cart icon height */
+    width: 30px;
+    height: 30px;
     cursor: pointer;
 }
 .profile{
-    width: 30px; /* Adjust the cart icon width */
-    height: 30px; /* Adjust the cart icon height */
+    width: 30px;
+    height: 30px;
     cursor: pointer;
 }

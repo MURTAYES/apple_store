@@ -100,7 +100,8 @@ include('sidebar.php');
         }
 
         /* Add some styling to the custom upload button */
-        .custom_upload_button ,button{
+        .custom_upload_button,
+        button {
             background-color: #333;
             color: #fff;
             padding: 10px 15px;
@@ -156,7 +157,6 @@ include('sidebar.php');
         </form>
 
         <?php
-
         if (isset($_POST['update'])) {
             $username = $_POST["username"];
             $full_name =  $_POST["full_name"];
@@ -167,7 +167,7 @@ include('sidebar.php');
                 echo "Password and Confirm Password do not match. Please go back and try again.";
             }
 
-            //image
+            //image storing
             if ($_FILES['image']['name']) {
                 $targetDirectory = 'img/';
                 $imageFileName = $id . '_' . $_FILES['image']['name'];
@@ -186,8 +186,6 @@ include('sidebar.php');
                 echo "Error updating user information: " . mysqli_error($conn);
             }
         }
-
-        // Close the database connection
         $conn->close();
         ?>
     </div>
