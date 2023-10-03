@@ -10,12 +10,37 @@ include('sidebar.php');
     <link rel="shortcut icon" href="../component/image/apple(1).png" type="image/x-icon">
     <title>Admin Dashboard</title>
     <style>
+        .title{
+            position: absolute;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .add .btn {
+            width: 120px;
+            padding: 8px 10px;
+            font-size: 15px;
+            border: 0;
+            background-color: #333;
+            color: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+            text-align: center;
+            margin-left: 20px;
+        }
+
+        .add .btn:hover {
+            background-color: #555;
+        }
+
         #content {
             margin-left: 220px;
             padding: 20px;
         }
 
         #content table {
+            margin-top: 80px;
             width: 80%;
             text-align: center;
             padding: 15px auto;
@@ -37,20 +62,43 @@ include('sidebar.php');
             color: #fff;
             padding: 5px;
         }
+        #content table td a{
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 15px;
+            border: 0;
+            background-color: #333;
+            color: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        img{
+            height: 90px;
+            width: 65px;
+        }
     </style>
 </head>
 
 <body>
     <div id="content">
+        <div class="title">
         <h1>Inventory details</h1>
+        <div class="add">
+            <a href="add.php">
+                    <input type="submit" value="Add product" name="add" class="btn">
+            </a>
+        </div>
+        </div>
+
         <table>
             <tr>
                 <th>category_id</th>
+                <th>Image</th>
                 <th>Product ID</th>
                 <th>Product Name</th>
                 <th>price</th>
                 <th>quantity</th>
-                <th>image</th>
+                <th>Colour</th>
                 <th>Option</th>
             </tr>
             <?php
@@ -61,11 +109,12 @@ include('sidebar.php');
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>
                             <td> $row[category_id]  </td>
+                            <td> <img src='".$row['img']."'>  </td>
                             <td> $row[product_id]   </td>
                             <td> $row[name]         </td>
                             <td> $row[price]        </td>
                             <td> $row[quantity]     </td>
-                            <td> $row[image]        </td>
+                            <td> $row[colour]        </td>
                             <td> <a href='inventupdate.php?pid={$row['product_id']}'>Edit</a> </td>
                          </tr>";
                 }

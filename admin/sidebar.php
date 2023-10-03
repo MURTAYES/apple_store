@@ -164,7 +164,7 @@ $details = mysqli_fetch_assoc($result);
     </div>
     <div id="user-profile">
         <a href="profile.php">
-            <img src="img/m_admin.jpeg" alt="User Profile">
+        <img src="<?php echo $details['img']; ?>"  alt="Current Image">
             <p><?php echo $details['username'] ?></p>
         </a>
     </div>

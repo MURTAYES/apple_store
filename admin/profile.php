@@ -25,6 +25,11 @@ include('sidebar.php');
             align-items: center;
         }
 
+        .content .form .input_field img {
+            height: 80px;
+            width: 80px;
+        }
+
         .content .form .input_field label {
             width: 200px;
             margin-right: 10px;
@@ -93,18 +98,38 @@ include('sidebar.php');
         .content .form .input_field .btn:hover {
             background-color: #555;
         }
+
+        /* Add some styling to the custom upload button */
+        .custom_upload_button ,button{
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 20px;
+        }
+
+        /* Style the input field to be hidden */
+        input[type="file"] {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="content">
-        <form action="#" method="post">
+        <form action="#" method="post" enctype="multipart/form-data">
             <div class="title">
                 <h2>User details</h2>
             </div>
             <div class="form">
                 <div class="input_field">
+                    <img src="<?php echo $details['img']; ?>" alt="Current Image">
+                    <label for="customImageUpload" class="custom_upload_button">Upload New Image</label>
+                    <input type="file" id="customImageUpload" name="image" style="display: none;">
+                </div>
+                <div class=" input_field">
                     <label>User Name</label>
                     <input type="text" value="<?php echo $details['username'] ?>" class="input" name="username" required>
                 </div>
@@ -130,33 +155,41 @@ include('sidebar.php');
             </div>
         </form>
 
-<?php
+        <?php
 
-if (isset($_POST['update'])) {
-    $username = $_POST["username"];
-    $full_name =  $_POST["full_name"];
-    $email = $_POST['email'];
-    $pass = $_POST['pass'];
-    $conpass = $_POST['conpass'];
+        if (isset($_POST['update'])) {
+            $username = $_POST["username"];
+            $full_name =  $_POST["full_name"];
+            $email = $_POST['email'];
+            $pass = $_POST['pass'];
+            $conpass = $_POST['conpass'];
+            if ($pass !== $conpass) {
+                echo "Password and Confirm Password do not match. Please go back and try again.";
+            }
 
+            //image
+            if ($_FILES['image']['name']) {
+                $targetDirectory = 'img/';
+                $imageFileName = $id . '_' . $_FILES['image']['name'];
+                $targetPath = $targetDirectory . $imageFileName;
+                move_uploaded_file($_FILES['image']['tmp_name'], $targetPath);
+                $sql = "UPDATE admins SET username = '$username', full_name = '$full_name', email = '$email', password = '$pass', img = '$targetPath' WHERE admin_id = '$id'";
+            } else {
+                $sql = "UPDATE admins SET username = '$username', full_name = '$full_name', email = '$email', password = '$pass' WHERE admin_id = '$id'";
+            }
 
-    if ($pass !== $conpass) {
-        echo "Password and Confirm Password do not match. Please go back and try again.";
-    }
+            //performing quary
+            if (mysqli_query($conn, $sql)) {
+                echo "User information updated successfully. Please refresh your page to see the update";
+                echo '<a href="profile.php"><button >Refresh</button></a>';
+            } else {
+                echo "Error updating user information: " . mysqli_error($conn);
+            }
+        }
 
-
-    // Insertiing data to users table in database
-    $sql = "UPDATE admins SET username = '$username', full_name = '$full_name', email = '$email', password = '$pass' WHERE admin_id = '$id' ";
-
-    if (mysqli_query($conn, $sql)) {
-        echo "User information updated successfully.";
-    } else {
-        echo "Error updating user information: " . mysqli_error($conn);
-    }
-}
-// Close the database connection
-$conn->close();
-?>
+        // Close the database connection
+        $conn->close();
+        ?>
     </div>
 </body>
 
