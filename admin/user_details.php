@@ -7,7 +7,6 @@ include('sidebar.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../component/image/apple(1).png" type="image/x-icon">
     <title>Admin Dashboard</title>
     <style>
         #content {
@@ -37,6 +36,10 @@ include('sidebar.php');
             color: #fff;
             padding: 5px;
         }
+        img{
+            width: 50px;
+            height: 50px;
+        }
     </style>
 </head>
 
@@ -46,6 +49,7 @@ include('sidebar.php');
         <table>
             <tr>
                 <th>User ID</th>
+                <th>Image</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Gender</th>
@@ -60,24 +64,24 @@ include('sidebar.php');
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row["user_id"] . "</td>";
-                    echo "<td>" . $row["first_name"] . "</td>";
-                    echo "<td>" . $row["last_name"] . "</td>";
-                    echo "<td>" . $row["gender"] . "</td>";
-                    echo "<td>" . $row["email"] . "</td>";
-                    echo "<td>" . $row["phone"] . "</td>";
-                    echo "<td>" . $row["address"] . "</td>";
-                    echo "</tr>";
+                    echo "<tr>
+                            <td>$row[user_id]</td>
+                            <td><img src='".$row['img']."'></td>
+                            <td>$row[first_name]</td>
+                            <td>$row[last_name]</td>
+                            <td>$row[gender]</td>
+                            <td>$row[email]</td>
+                            <td>$row[phone]</td>
+                            <td>$row[address]</td>
+                          </tr>";
                 }
             } else {
-                echo "No users found in the database.";
+                echo "<tr><td colspan='8'>No users found in the database.</td></tr>";
             }
 
             $conn->close();
             ?>
         </table>
-
     </div>
 </body>
 

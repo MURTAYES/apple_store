@@ -13,7 +13,7 @@
     <header>
         <nav>
             <div class="logo">
-                <img src="component/image/apple.png" alt="Logo">
+                <img src="img/component/image/apple.png" alt="Logo">
             </div>
             <ul class="menu">
                 <li><a href="mac.html">Mac</a></li>

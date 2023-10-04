@@ -20,7 +20,7 @@ $details = mysqli_fetch_assoc($result);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../component/image/apple(1).png" type="image/x-icon">
+    <link rel="shortcut icon" href="../img/component/image/apple(1).png" type="image/x-icon">
     <title>Admin Dashboard</title>
     <style>
         body {
@@ -153,10 +153,11 @@ $details = mysqli_fetch_assoc($result);
 <body>
     <div id="sidebar">
         <div class="logo">
-            <a href="admindashboard.php"><img src="../component/image/apple.png" alt="Logo"></a>
+            <a href="admindashboard.php"><img src="../img/component/image/apple.png" alt="Logo"></a>
         </div>
         <ul>
             <li><a href="admindashboard.php" id="dashboard-option">Dashboard</a></li>
+            <li><a href="orders.php" id="dashboard-option">Orders</a></li>
             <li><a href="inventory.php" id="inventory-option">Inventory</a></li>
             <li><a href="user_details.php" id="user-details-option">User Details</a></li>
         </ul>
