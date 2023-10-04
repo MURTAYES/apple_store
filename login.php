@@ -11,7 +11,7 @@
 <body>
    <div class="container">
       <div class="title">
-         <img src="component/image/apple(1).png" alt="">
+         <img src="img/component/image/apple(1).png" alt="">
          <h2>LOGIN</h2>
       </div>
       <form action="#" method="post">
