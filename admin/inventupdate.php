@@ -45,15 +45,9 @@ $product = mysqli_fetch_assoc($result_product);
             border-radius: 3px;
         }
 
-        .content .form .input_field textarea {
-            width: 100%;
-            outline: none;
-            border: 1px solid #333;
-            font-size: 15px;
-            padding: 8px 10px;
-            border-radius: 3px;
-            height: 80px;
-            resize: none;
+        .content .form .input_field img {
+            height: 90px;
+            width: 65px;
         }
 
         .content .form .input_field select {
@@ -98,16 +92,51 @@ $product = mysqli_fetch_assoc($result_product);
         .content .form .input_field .btn:hover {
             background-color: #555;
         }
+
+        .custom_upload_button,
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 20px;
+        }
+
+        .delete .btn {
+            width: 120px;
+            padding: 8px 10px;
+            font-size: 15px;
+            border: 0;
+            background-color: #333;
+            color: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+            text-align: center;
+            margin-left: 20px;
+        }
+
+        .delete .btn:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 
 <body>
     <div class="content">
-        <form action="#" method="post">
-            <div class="title">
-                <h2>Edit Product details</h2>
+        <div class="title">
+            <h1>Inventory Update</h1>
+            <div class="delete">
+                <a href="com/delete.php?pid=<?php echo $product['product_id']; ?>">
+                    <button type="submit" name="delete" class="btn">Delete product</button>
+                </a>
             </div>
+        </div>
+        <form action="#" method="post">
             <div class="form">
+                <div class="input_field">
+                    <img src="<?php echo $product['img']; ?>" alt="Current Image">
+                </div>
                 <div class="input_field">
                     <label>Product_id</label>
                     <input type="text" value="<?php echo $product['product_id']; ?>" class="input" name="pid" required>
