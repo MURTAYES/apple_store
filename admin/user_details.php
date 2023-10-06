@@ -66,7 +66,7 @@ include('sidebar.php');
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>
                             <td>$row[user_id]</td>
-                            <td><img src='".$row['img']."'></td>
+                            <td><img src='../user/".$row['img']."'></td>
                             <td>$row[first_name]</td>
                             <td>$row[last_name]</td>
                             <td>$row[gender]</td>
