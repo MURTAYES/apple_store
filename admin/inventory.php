@@ -9,7 +9,7 @@ include('sidebar.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <style>
-        .title{
+        .title {
             position: absolute;
             display: flex;
             align-items: center;
@@ -61,7 +61,8 @@ include('sidebar.php');
             color: #fff;
             padding: 5px;
         }
-        #content table td a{
+
+        #content table td a {
             width: 100%;
             padding: 8px 10px;
             font-size: 15px;
@@ -72,7 +73,8 @@ include('sidebar.php');
             cursor: pointer;
             text-decoration: none;
         }
-        img{
+
+        img {
             height: 90px;
             width: 65px;
         }
@@ -82,12 +84,12 @@ include('sidebar.php');
 <body>
     <div id="content">
         <div class="title">
-        <h1>Inventory details</h1>
-        <div class="add">
-            <a href="add.php">
+            <h1>Inventory details</h1>
+            <div class="add">
+                <a href="add.php">
                     <input type="submit" value="Add product" name="add" class="btn">
-            </a>
-        </div>
+                </a>
+            </div>
         </div>
 
         <table>
@@ -109,7 +111,7 @@ include('sidebar.php');
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>
                             <td> $row[category_id]  </td>
-                            <td> <img src='".$row['img']."'>  </td>
+                            <td> <img src='" . $row['img'] . "'>  </td>
                             <td> $row[product_id]   </td>
                             <td> $row[name]         </td>
                             <td> $row[price]        </td>

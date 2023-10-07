@@ -89,7 +89,7 @@ include('sidebar.php');
                         <td>{$row['quantity']}</td>
                         <td><img src='" . $row['img'] . "'></td>
                         <td>
-                          <a href='status.php?oid={$row['order_id']}'>Action</a>
+                          <a href='com/status.php?oid={$row['order_id']}'>Action</a>
                         </td>
                     </tr>";
                     }
