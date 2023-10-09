@@ -51,13 +51,30 @@ include('sidebar.php');
             height: 90px;
             width: 65px;
         }
+
+        a img {
+            height: 40px;
+            width: 40px;
+        }
+
+        .orders-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .orders-header h1 {
+            margin-right: 10px;
+        }
     </style>
-    <!-- Add your CSS styles and other meta tags here -->
 </head>
 
 <body>
     <div id="content">
-        <h1>Order Dashboard</h1>
+        <div class="orders-header">
+            <h1>Orders Now</h1>
+            <a href="com/orderhistory.php"><img src="../img/component/image/history.png" alt=""></a>
+        </div>
+
         <table>
             <tr>
                 <th>Order Status</th>
@@ -71,11 +88,13 @@ include('sidebar.php');
             <tbody>
                 <?php
                 // Query to fetch orders, customers, and product information
-                $sql = "SELECT o.order_id,o.order_status, u.first_name, p.name, p.img, oi.quantity
-                FROM orders o
-                JOIN users u ON o.customer_id = u.user_id
-                JOIN order_items oi ON o.order_id = oi.order_id
-                JOIN products p ON oi.product_id = p.product_id";
+                $sql = "SELECT o.order_id, o.order_status, u.first_name, p.name, p.img, oi.quantity
+                        FROM orders o
+                         JOIN users u ON o.customer_id = u.user_id
+                         JOIN order_items oi ON o.order_id = oi.order_id
+                         JOIN products p ON oi.product_id = p.product_id
+                        WHERE o.order_status = 'pending'";
+
 
                 $result = mysqli_query($conn, $sql);
 
@@ -103,8 +122,6 @@ include('sidebar.php');
             </tbody>
         </table>
     </div>
-
-
 </body>
 
 </html>
