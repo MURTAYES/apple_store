@@ -18,7 +18,7 @@ include "db_connection.php";
         <form action="#" method="post">
             <div class="title">
                 <a href="index.php">
-                    <img src="component/image/apple(1).png" alt="">
+                    <img src="img/component/image/apple(1).png" alt="">
                 </a>
                 <h2>SIGN UP FORM</h2>
             </div>
