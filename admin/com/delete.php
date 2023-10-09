@@ -19,6 +19,7 @@ if (isset($_GET['oid'])) {
     $sql = "DELETE FROM orders WHERE order_id = $oid";
 
     if (mysqli_query($conn, $sql)) {
+        echo "Orders succesfully deleted ";
         header("Location: ../orders.php");
         exit();
     } else {
