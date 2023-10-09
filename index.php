@@ -9,6 +9,10 @@ include('header.php');
     <title>Document</title>
 </head>
 <body>
+<<<<<<< HEAD
     <p>hello</p>
+=======
+    <h1>hello</h1>
+>>>>>>> 5eb1f45092e9cf6e8d8c9228b226da8e784cbdbf
 </body>
 </html>
