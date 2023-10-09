@@ -67,7 +67,7 @@ $result = mysqli_fetch_assoc($query);
             height: 90px;
             width: 65px;
         }
-        .delete .btn {
+        .delete .btn,.shipping .btn,.back .btn, .Delivered .btn {
             width: 120px;
             padding: 8px 10px;
             font-size: 15px;
@@ -80,26 +80,22 @@ $result = mysqli_fetch_assoc($query);
             margin-left: 20px;
         }
 
-        .delete .btn:hover {
+        .delete .btn:hover,.shipping .btn:hover,.back .btn:hover, .Delivered .btn:hover {
             background-color: #555;
         }
         .shipping .btn {
-            width: 120px;
-            padding: 8px 10px;
-            font-size: 15px;
-            border: 0;
             margin-top: 5px;
             background-color: green;
-            color: #fff;
-            border-radius: 3px;
-            cursor: pointer;
-            text-align: center;
-            margin-left: 20px;
+        }
+        .back .btn{
+            margin-top: 5px;
+            background-color: #333;
+        }
+        .Delivered .btn{
+            margin-top: 5px;
+            background-color: blue;
         }
 
-        .shipping .btn:hover {
-            background-color: #555;
-        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,13 +107,23 @@ $result = mysqli_fetch_assoc($query);
         <h1>Order Dashboard</h1>
         <table>
             <div class="delete">
-                <a href="com/deleteproduct.php?pid=<?php echo $oid; ?>">
-                    <button type="submit" name="delete" class="btn">Delete product</button>
+                <a href="delete.php?oid=<?php echo $oid; ?>">
+                    <button type="submit" name="delete" class="btn">Delete orders</button>
                 </a>
             </div>
             <div class="shipping">
-                <a href="com/shipping.php?oid=<?php echo $oid; ?>">
+                <a href="shipping.php?oid=<?php echo $oid; ?>">
                     <button type="submit" name="shipping" class="btn">Shipping</button>
+                </a>
+            </div>
+            <div class="Delivered">
+                <a href="shipping.php?oid=<?php echo $oid; ?>&s=1">
+                    <button type="submit" name="delivered" class="btn">Delivered</button>
+                </a>
+            </div>
+            <div class="back">
+                <a href="../orders.php">
+                    <button type="submit" name="shipping" class="btn">Back</button>
                 </a>
             </div>
             <tr>
