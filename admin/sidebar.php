@@ -119,34 +119,6 @@ $details = mysqli_fetch_assoc($result);
             display: flex;
             align-items: center;
         }
-
-        #content {
-            margin-left: 220px;
-            padding: 20px;
-        }
-
-        #content table {
-            width: 80%;
-            text-align: center;
-            padding: 15px auto;
-            border-collapse: collapse;
-        }
-
-        #content table th {
-            background-color: #333;
-            color: #fff;
-            padding: 5px;
-        }
-
-        #content table tr {
-            border-bottom: 1px solid #fff;
-        }
-
-        #content table td {
-            background-color: #999;
-            color: #fff;
-            padding: 5px;
-        }
     </style>
 </head>
 
@@ -175,9 +147,6 @@ $details = mysqli_fetch_assoc($result);
                 <input type="submit" value="Log Out" name="log_out" class="btn">
             </div>
         </a>
-    </div>
-    <div id="content">
-
     </div>
 </body>
 

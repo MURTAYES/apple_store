@@ -29,8 +29,8 @@
                     <input type="text" placeholder="Search">
                     <img src="img/component/image/search.svg" alt="Search Icon">
                 </div>
-                <img src="img/component/image/shopping-cart.svg" alt="Cart Icon" class="cart-icon">
-                <a href="login.php"><img src="img/component/image/proile1.svg" alt="Profile" class="profile"></a>
+                <img src="img/component/image/shopping-cart.png" alt="Cart Icon" class="cart-icon">
+                <a href="login.php"><img src="img/component/image/profile.png" alt="Profile" class="profile"></a>
             </div>
         </nav>
     </header>
