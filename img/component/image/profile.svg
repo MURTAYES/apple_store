@@ -1,9 +1,0 @@
-<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-	<title>proile-svg</title>
-	<defs>
-		<image  width="22" height="22" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAAAXNSR0IB2cksfwAAAF1QTFRF////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////P23gxwAAAB90Uk5TACBvj79A/9CQ8IB/oMCfYK8QsODvcM/fMD8u87iXmAP8x4AAAADkSURBVHicVVFte4QgDKseBEHrCwM97277/z9zUGC6fGghj0lDJSro+odSj76jO7QCYEwqSl/sAOvkqp3F2NgJ/CfuGHP71uW2rKrfUnflqsG5eZgvhMwzsiHb7LBgySVmH6tSKRpvcrWexKajKBLy+0XrJJogc6uJKAkDsSl5PPYDdpOzYeK9Jl48x8Jmupr8QzKpI4me5/msG0ojJaCeDwiOWZeAxOG1wnqnE5y3WF+BRfK2bmu2m7PvYvvB933eDz5tseparMLUzg5hPCXDGOpDSyROKfY9Fb79tCyOA/MQm9kvlTYJiS0UObgAAAAASUVORK5CYII="/>
-	</defs>
-	<style>
-	</style>
-	<use id="Layer" href="#img1" x="1" y="1"/>
-</svg>

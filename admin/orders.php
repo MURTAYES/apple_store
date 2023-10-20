@@ -72,7 +72,7 @@ include('sidebar.php');
     <div id="content">
         <div class="orders-header">
             <h1>Orders Now</h1>
-            <a href="com/orderhistory.php"><img src="../img/component/image/history.png" alt=""></a>
+            <a href="com/orderhistory.php"><img src="../img/component/history.png" alt=""></a>
         </div>
 
         <table>

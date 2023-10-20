@@ -125,7 +125,7 @@ $details = mysqli_fetch_assoc($result);
 <body>
     <div id="sidebar">
         <div class="logo">
-            <a href="admindashboard.php"><img src="../img/component/image/apple.png" alt="Logo"></a>
+            <a href="admindashboard.php"><img src="../img/component/apple.png" alt="Logo"></a>
         </div>
         <ul>
             <li><a href="admindashboard.php" id="dashboard-option">Dashboard</a></li>
