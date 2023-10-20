@@ -1,28 +1,37 @@
 <?php
- include('db_connection.php');
+include "db_connection.php";
+session_start();
+if (isset($_SESSION["user_id"])) {
+
+    $userId = $_SESSION["user_id"];
+
+    $query = "SELECT * FROM users WHERE user_id = $userId";
+    $result = mysqli_query($conn, $query);
+    $details = mysqli_fetch_assoc($result);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="component/image/apple.png" type="image/x-icon">
-    <title>Apple Store</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
         * {
             font-family: 'Roboto', sans-serif;
-            padding: 0;
             margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        /* Your CSS styles go here */
+
         header {
-            background-color: #333;
+            background-color: #111112;
             color: #fff;
             position: fixed;
             width: 100%;
+            top: 0;
+            left: 0;
         }
 
         nav {
@@ -33,11 +42,13 @@
             margin: 0 auto;
         }
 
+
         .logo img {
             width: 50px;
             height: 50px;
             margin-right: 20px;
         }
+
 
         ul.menu {
             list-style: none;
@@ -47,6 +58,7 @@
         ul.menu li {
             margin-right: 20px;
         }
+
 
         ul.menu li a {
             text-decoration: none;
@@ -85,20 +97,46 @@
             width: 30px;
             height: 30px;
             cursor: pointer;
+            margin-right: 10px;
         }
 
-        .profile {
+        /*profile*/
+        #user-profile {
+            margin-right: 0;
+        }
+
+        #user-profile img {
             width: 30px;
             height: 30px;
             cursor: pointer;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        #user-profile a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+        }
+
+        #user-profile a p {
+            display: flex;
+            align-items: center;
+            color: #fff;
         }
     </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/component/apple.png" type="image/x-icon">
+    <title>Apple Store</title>
 </head>
+
 <body>
     <header>
         <nav>
             <div class="logo">
-                <img src="img/component/image/apple.png" alt="Logo">
+                <img src="img/component/apple.png" alt="Logo">
             </div>
             <ul class="menu">
                 <li><a href="mac.html">Mac</a></li>
@@ -108,15 +146,40 @@
                 <li><a href="vision.html">Vision</a></li>
                 <li><a href="airpods.html">Airpods</a></li>
             </ul>
+
             <div class="utility">
                 <div class="search-box">
                     <input type="text" placeholder="Search">
-                    <img src="img/component/image/search.svg" alt="Search Icon">
+                    <img src="img/component/search.svg" alt="Search Icon">
                 </div>
-                <img src="img/component/image/shopping-cart.svg" alt="Cart Icon" class="cart-icon">
-                <a href="login.php"><img src="img/component/image/proile1.svg" alt="Profile" class="profile"></a>
+                <img src="img/component/shopping-cart.png" alt="Cart Icon" class="cart-icon">
+                <div id="user-profile">
+                    <a href="<?php
+                                if (isset($_SESSION["user_id"])) {
+                                    echo 'user/dashboard.php';
+                                } else {
+                                    echo 'login.php';
+                                }
+                                ?>">
+                        <img src="<?php
+                                    if (isset($_SESSION["user_id"])) {
+                                        echo 'user/' . $details['img'];
+                                    } else {
+                                        echo "img/component/avatar.png";
+                                    }
+                                    ?>" alt="Profile" class="profile">
+                        <p><?php if (isset($_SESSION["user_id"])) {
+                                echo $details['first_name'];
+                            } else {
+                                echo "Login";
+                            }
+                            ?>
+                        </p>
+                    </a>
+                </div>
             </div>
         </nav>
     </header>
 </body>
+
 </html>
