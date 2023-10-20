@@ -7,11 +7,10 @@
    <link rel="stylesheet" type="text/css" href="css/login.css">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
    <div class="container">
       <div class="title">
-         <img src="img/component/image/apple(1).png" alt="">
+         <img src="img/component/apple(1).png" alt="">
          <h2>LOGIN</h2>
       </div>
       <form action="#" method="post">
@@ -63,9 +62,13 @@ if (isset($_POST['log_in'])) {
       $_SESSION["admin_id"] = $adminId;
       header("Location: admin/admindashboard.php");
       exit;
-   } elseif (mysqli_num_rows($result_user) == 1) {
-      $_SESSION["username"] = $email;
-      header("Location: user/dashboard.php");
+   } if (mysqli_num_rows($result_user) == 1) {
+      $row = mysqli_fetch_assoc($result_user);
+      $userid = $row['user_id'];
+
+      session_start(); // Start the session if it hasn't been started yet
+      $_SESSION["user_id"] = $userid;
+      header("Location: index.php");
       exit;
    } else {
       echo "Login failed. Please check your email and password.";
