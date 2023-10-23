@@ -32,6 +32,9 @@ Git bash
 ```
 
 2. Import the sql file:
+```
+CREATE DATABASE apple
+```
    
  Import sql file to your server
 ```
