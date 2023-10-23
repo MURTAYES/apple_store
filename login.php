@@ -1,3 +1,13 @@
+<?php
+include "db_connection.php";
+session_start();
+if (isset($_SESSION["admin_id"])) {
+   header("Location: admin/admindashboard.php");
+}
+if (isset($_SESSION["user_id"])) {
+   header("Location: userr/dashboard.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 
