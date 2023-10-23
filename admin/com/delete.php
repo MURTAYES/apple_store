@@ -33,7 +33,7 @@ if (isset($_GET['uid'])) {
 
     if (mysqli_query($conn, $sql)) {
         echo "User account deleted succesfully";
-        header("Location: ../user.php");
+        header("Location: ../users.php");
         exit();
     } else {
         echo "Error deleting user account: ";
