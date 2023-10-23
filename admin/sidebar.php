@@ -131,7 +131,7 @@ $details = mysqli_fetch_assoc($result);
             <li><a href="admindashboard.php" id="dashboard-option">Dashboard</a></li>
             <li><a href="orders.php" id="dashboard-option">Orders</a></li>
             <li><a href="inventory.php" id="inventory-option">Inventory</a></li>
-            <li><a href="user_details.php" id="user-details-option">User Details</a></li>
+            <li><a href="users.php" id="user-details-option">User Details</a></li>
         </ul>
 
     </div>
