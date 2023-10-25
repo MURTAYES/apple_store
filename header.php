@@ -9,7 +9,9 @@ if (isset($_SESSION["user_id"])) {
     $result = mysqli_query($conn, $query);
     $details = mysqli_fetch_assoc($result);
 }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,34 +72,40 @@ if (isset($_SESSION["user_id"])) {
             align-items: center;
         }
 
-        /* Style the search box */
-        .search-box {
-            display: flex;
-            align-items: center;
-            background-color: #fff;
-            border-radius: 5px;
-            padding: 5px;
-            margin-right: 60px;
-        }
-
-        .search-box input[type="text"] {
-            border: none;
-            outline: none;
-            width: 100px;
-            padding: 5px;
-        }
-
-        .search-box img {
-            width: 20px;
-            height: 20px;
-            margin-left: 5px;
-        }
-
-        .cart-icon {
+        .utility img {
             width: 30px;
             height: 30px;
             cursor: pointer;
             margin-right: 10px;
+        }
+
+        /* Style the search box */
+        .search {
+            width: 30px;
+            height: 30px;
+        }
+
+        #search-box {
+            width: 300px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        #search-box input {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #search-box button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
         /*profile*/
@@ -124,7 +132,61 @@ if (isset($_SESSION["user_id"])) {
             align-items: center;
             color: #fff;
         }
+
+        .search-box {
+            position: relative;
+            display: inline-block;
+        }
+
+
+        #search-results {
+            position: absolute;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            z-index: 1000;
+        }
+
+        #search-results li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #search-results li:hover {
+            background-color: #eee;
+        }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        function searchFunction() {
+            var input = document.getElementById('searchBox').value;
+            if (input.trim() === '') {
+                document.getElementById("searchResult").innerHTML = '';
+                return;
+            }
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("searchResult").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET", "search.php?query=" + input, true);
+            xmlhttp.send();
+        }
+
+        function toggleSearchBox() {
+            var searchBox = document.getElementById("search-box");
+            if (searchBox.style.display === "none") {
+                searchBox.style.display = "block";
+            } else {
+                searchBox.style.display = "none";
+            }
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
@@ -139,19 +201,22 @@ if (isset($_SESSION["user_id"])) {
                 <img src="img/component/apple.png" alt="Logo">
             </div>
             <ul class="menu">
-                <li><a href="mac.html">Mac</a></li>
+                <li><a href="catagory.php?catid=3">Mac</a></li>
                 <li><a href="ipad.html"> iPad</a></li>
-                <li><a href="iphone.html">iPhone</a></li>
+                <li><a href="iphone.php">iPhone</a></li>
                 <li><a href="watch.html"> Watch</a></li>
                 <li><a href="vision.html">Vision</a></li>
                 <li><a href="airpods.html">Airpods</a></li>
             </ul>
-
             <div class="utility">
-                <div class="search-box">
-                    <input type="text" placeholder="Search">
-                    <img src="img/component/search.svg" alt="Search Icon">
+                <div id="search-box">
+                    <input type="text" id="searchBox" placeholder="Search..." onkeyup="searchFunction()">
+                    <button onclick="searchFunction()">Search</button>
                 </div>
+                <div id="searchResult"></div>
+                <img onclick="toggleSearchBox()" class="search" src="img/component/search.png" alt="">
+
+
                 <img src="img/component/shopping-cart.png" alt="Cart Icon" class="cart-icon">
                 <div id="user-profile">
                     <a href="<?php
@@ -177,7 +242,9 @@ if (isset($_SESSION["user_id"])) {
                         </p>
                     </a>
                 </div>
+
             </div>
+
         </nav>
     </header>
 </body>

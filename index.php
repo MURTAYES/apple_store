@@ -106,7 +106,6 @@
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="img/component/apple.png" type="image/x-icon">
     <title>Apple Store</title>
 </head>
@@ -115,7 +114,7 @@
     <div class="text-container1">
         <h1>iphone 15 pro</h1>
         <p>Titanium.So strong.So light.So pro</p>
-        <a href="">
+        <a href="#">
             <button class="button">Buy Now</button>
         </a>
     </div>
