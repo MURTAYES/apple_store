@@ -33,7 +33,7 @@ h6{
     color: #fff; 
     padding: 10px 20px; 
     border: none; 
-    border-radius: 7px; 
+    border-radius: 15px; 
     cursor: pointer; 
 }
 
@@ -58,4 +58,43 @@ h6{
 /* Style the card content */
 .card p {
     font-size: 16px; /* Set the content font size */
+}
+
+.black{
+    background-color: black;
+    color: white; 
+    border: solid black; 
+}
+
+.fullwidth{
+    width: 100%; 
+}
+
+.container {
+    display: flex;
+    align-items: center; /* Vertically center the items */
+    background-color: #FBFBFD;
+}
+
+.image {
+    flex: 1; 
+    margin-right: 20px; 
+}
+
+.text {
+    flex: 2;
+}
+
+.footeriphone{
+    font-size: 80%;
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+
+.footercenter{
+    text-align: center; 
+    margin-bottom: 20px;
+
 }
