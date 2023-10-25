@@ -50,12 +50,20 @@ $details = mysqli_fetch_assoc($result);
         }
 
         #sidebar ul {
+            list-style-type: none;
             padding: 0;
         }
 
-        #sidebar ul li {
-            list-style-type: none;
-            padding: 10px 10px;
+        #sidebar li {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        #sidebar ul li img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
         }
 
         #sidebar ul li a {
@@ -70,28 +78,25 @@ $details = mysqli_fetch_assoc($result);
             color: #fff;
         }
 
-        #log-out {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+        .logout-btn {
+            top: 10px;
+            right: 10px;
+        }
+
+        .logout-btn {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
             display: flex;
             align-items: center;
         }
 
-        .logout .btn {
-            width: 80px;
-            padding: 8px 10px;
-            font-size: 15px;
-            border: 0;
-            background-color: #333;
-            color: #fff;
-            border-radius: 3px;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .logout .btn:hover {
-            background-color: #555;
+        .logout-btn img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
         }
 
         #user-profile {
@@ -120,6 +125,11 @@ $details = mysqli_fetch_assoc($result);
             align-items: center;
         }
     </style>
+    <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
 </head>
 
 <body>
@@ -128,24 +138,38 @@ $details = mysqli_fetch_assoc($result);
             <a href="admindashboard.php"><img src="../img/component/apple.png" alt="Logo"></a>
         </div>
         <ul>
-            <li><a href="admindashboard.php" id="dashboard-option">Dashboard</a></li>
-            <li><a href="orders.php" id="dashboard-option">Orders</a></li>
-            <li><a href="inventory.php" id="inventory-option">Inventory</a></li>
-            <li><a href="users.php" id="user-details-option">User Details</a></li>
+            <li onclick="navigateTo('admindashboard.php')">
+                <a id="dashboard-option">
+                    <img src="img/comonent/dashboard.png" alt="Dashboard Icon">Dashboard
+                </a>
+            </li>
+            <li onclick="navigateTo('orders.php')">
+                <a id="dashboard-option">
+                    <img src="img/comonent/orders.png" alt="Orders Icon">Orders
+                </a>
+            </li>
+            <li onclick="navigateTo('inventory.php')">
+                <a id="inventory-option">
+                    <img src="img/comonent/inventory.png" alt="Inventory Icon">Inventory
+                </a>
+            </li>
+            <li onclick="navigateTo('users.php')">
+                <a id="user-details-option">
+                    <img src="img/comonent/customer.png" alt="User Details Icon">User Details
+                </a>
+            </li>
+            <li onclick="navigateTo('../logout.php')">
+                <a id="user-details-option">
+                    <img src="img/comonent/logout.png" alt="Log Out">Log Out
+                </a>
+            </li>
         </ul>
 
     </div>
     <div id="user-profile">
         <a href="profile.php">
-        <img src="<?php echo $details['img']; ?>"  alt="Current Image">
+            <img src="<?php echo $details['img']; ?>" alt="Current Image">
             <p><?php echo $details['username'] ?></p>
-        </a>
-    </div>
-    <div id="log-out">
-        <a href="../logout.php">
-            <div class="logout">
-                <input type="submit" value="Log Out" name="log_out" class="btn">
-            </div>
         </a>
     </div>
 </body>
