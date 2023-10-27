@@ -79,6 +79,32 @@ if (isset($_SESSION["user_id"])) {
             margin-right: 10px;
         }
 
+                /*profile*/
+                #user-profile {
+            margin-right: 0;
+        }
+
+        #user-profile img {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        #user-profile a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+        }
+
+        #user-profile a p {
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+
         /* Style the search box */
         .search {
             width: 30px;
@@ -108,30 +134,6 @@ if (isset($_SESSION["user_id"])) {
             cursor: pointer;
         }
 
-        /*profile*/
-        #user-profile {
-            margin-right: 0;
-        }
-
-        #user-profile img {
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        #user-profile a {
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-        }
-
-        #user-profile a p {
-            display: flex;
-            align-items: center;
-            color: #fff;
-        }
 
         .search-box {
             position: relative;
