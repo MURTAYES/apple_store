@@ -1,12 +1,30 @@
 <?php
 include('sidebar.php');
+
 $sql = "SELECT p.product_id, p.name, oi.quantity as delivered_quantity
-           FROM products p
-           JOIN order_items oi ON p.product_id = oi.product_id
-           JOIN orders o ON oi.order_id = o.order_id
-           WHERE o.order_status = 'Delivered';";
+        FROM products p
+        JOIN order_items oi ON p.product_id = oi.product_id
+        JOIN orders o ON oi.order_id = o.order_id
+        WHERE o.order_status = 'Delivered';";
+
 $result = mysqli_query($conn, $sql);
+
+$months = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+$userCountPerMonth = array();
+
+// Assuming you have a MySQLi connection in $conn
+for ($i = 0; $i <= 11; $i++) {
+    $query = "SELECT COUNT(*) AS user_count FROM users WHERE MONTH(registration_date) = " . ($i + 1);
+    $res = mysqli_query($conn, $query);
+    if (mysqli_num_rows($res) > 0) {
+        $row = mysqli_fetch_assoc($res);
+        $userCountPerMonth[] = $row['user_count'];
+    } else {
+        $userCountPerMonth[] = 0;
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -15,13 +33,13 @@ $result = mysqli_query($conn, $sql);
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {
-            'packages': ['corechart']
+            'packages': ['corechart', 'bar']
         });
-        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawCharts);
 
-        function drawChart() {
-
-            var data = google.visualization.arrayToDataTable([
+        function drawCharts() {
+            // Draw PieChart
+            var dataPie = google.visualization.arrayToDataTable([
                 ['Product Name', 'Quantity Delivered'],
                 <?php
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -30,33 +48,55 @@ $result = mysqli_query($conn, $sql);
                 ?>
             ]);
 
-            var options = {
+            var optionsPie = {
                 title: 'Products Sold',
                 is3D: true
             };
 
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            var chartPie = new google.visualization.PieChart(document.getElementById('piechart'));
+            chartPie.draw(dataPie, optionsPie);
 
-            chart.draw(data, options);
+            // Draw BarChart
+            google.charts.load('current', {
+                packages: ['corechart', 'line']
+            });
+            google.charts.setOnLoadCallback(drawCurveTypes);
+
+            function drawCurveTypes() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Month');
+                data.addColumn('number', 'User Count');
+
+                var monthNames = <?php echo json_encode($months); ?>;
+                var userCounts = <?php echo json_encode($userCountPerMonth); ?>;
+
+                data.addRows([
+                    <?php for ($i = 0; $i < count($months); $i++) {
+                        echo "['" . $months[$i] . "', " . $userCountPerMonth[$i] . "],";
+                    } ?>
+                ]);
+
+
+                var options = {
+                    hAxis: {
+                        title: 'Month'
+                    },
+                    vAxis: {
+                        title: 'User'
+                    },
+                    series: {
+                        1: {
+                            curveType: 'function'
+                        }
+                    }
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            }
         }
-
-        /* sales by month*/
-        document.getElementById('monthsDropdown').addEventListener('change', function() {
-            var selectedMonth = this.value;
-
-            // Perform an AJAX request
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    // Display the result in some HTML element
-                    document.getElementById("result").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("POST", "sales.php", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("selectedMonth=" + selectedMonth);
-        });
     </script>
+
     <style>
         #content {
             margin-left: 220px;
@@ -65,6 +105,7 @@ $result = mysqli_query($conn, $sql);
 
         .vertical-section {
             width: 50%;
+            float: left;
         }
     </style>
 </head>
@@ -75,26 +116,9 @@ $result = mysqli_query($conn, $sql);
             <div id="piechart"></div>
         </div>
         <div class="vertical-section">
-            <select id="monthsDropdown">
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-            </select>
-
-            <div id="chart2"></div>
+            <div id="chart_div"></div>
         </div>
-
     </div>
-
 </body>
 
 </html>
