@@ -79,8 +79,8 @@ if (isset($_SESSION["user_id"])) {
             margin-right: 10px;
         }
 
-                /*profile*/
-                #user-profile {
+        /*profile*/
+        #user-profile {
             margin-right: 0;
         }
 
@@ -116,6 +116,7 @@ if (isset($_SESSION["user_id"])) {
             padding: 10px;
             border-radius: 5px;
             display: none;
+            top: 20px;
         }
 
         #search-box input {
@@ -125,68 +126,111 @@ if (isset($_SESSION["user_id"])) {
             border-radius: 5px;
         }
 
-        #search-box button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
 
         .search-box {
             position: relative;
             display: inline-block;
         }
 
-
-        #search-results {
+        #searchResult {
             position: absolute;
-            width: 100%;
-            padding: 0;
-            margin: 0;
-            list-style-type: none;
-            max-height: 200px;
+            width: 280px;
+            height: 270px;
+            /* border: 1px solid #fff; */
+            right: 0;
+            top: 40px;
+            right: 240px;
+            z-index: 99999;
             overflow-y: auto;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            z-index: 1000;
+            border-radius: 5px;
         }
 
-        #search-results li {
-            padding: 10px;
-            cursor: pointer;
+        #searchResult ::-webkit-scrollbar {
+            width: 5px;
+            background: rgb(255, 255, 255, .3);
+            border-radius: 5px;
+            visibility: hidden;
         }
 
-        #search-results li:hover {
-            background-color: #eee;
+        #searchResult ::-webkit-scrollbar-thumb {
+            width: 5px;
+            background: rgb(255, 255, 255, .4);
+            border-radius: 5px;
+            visibility: hidden;
+        }
+
+        #searchResult :hover::-webkit-scrollbar {
+            visibility: visible;
+        }
+
+        #searchResult :hover::-webkit-scrollbar-thumb {
+            visibility: visible;
+        }
+
+
+
+        .card {
+            display: flex;
+            align-items: center;
+            margin-top: 3px;
+            margin-bottom: 5px;
+            text-decoration: none;
+            background-color: #fff;
+        }
+
+        .card img {
+            height: 90px;
+            width: 65px;
+            margin-right: 20px;
+            padding: 3px none;
+        }
+
+        .card .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: black;
+            text-decoration: none;
+        }
+
+        .card p {
+            margin: 5px 0 0 0;
+            color: #555;
         }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-        function searchFunction() {
-            var input = document.getElementById('searchBox').value;
-            if (input.trim() === '') {
-                document.getElementById("searchResult").innerHTML = '';
-                return;
+    <script>
+        function toggleSearchBox() {
+            var searchBox = document.getElementById('search-box');
+            if (searchBox.style.display === 'none') {
+                searchBox.style.display = 'block';
+            } else {
+                searchBox.style.display = 'none';
             }
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("searchResult").innerHTML = this.responseText;
-                }
-            };
-            xmlhttp.open("GET", "search.php?query=" + input, true);
-            xmlhttp.send();
         }
 
-        function toggleSearchBox() {
-            var searchBox = document.getElementById("search-box");
-            if (searchBox.style.display === "none") {
-                searchBox.style.display = "block";
-            } else {
-                searchBox.style.display = "none";
-            }
+        function searchFunction() {
+            var input = document.getElementById('searchBox').value;
+            var searchResult = document.getElementById('searchResult');
+            // Replace the URL with your PHP file handling the search logic
+            var url = 'search.php?search=' + input;
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        searchResult.innerHTML = xhr.responseText;
+                    } else {
+                        console.log('Error: ' + xhr.status);
+                    }
+                }
+            };
+
+            xhr.open('GET', url, true);
+            xhr.send();
         }
     </script>
     <meta charset="UTF-8">
@@ -211,13 +255,12 @@ if (isset($_SESSION["user_id"])) {
                 <li><a href="airpods.html">Airpods</a></li>
             </ul>
             <div class="utility">
+
                 <div id="search-box">
                     <input type="text" id="searchBox" placeholder="Search..." onkeyup="searchFunction()">
-                    <button onclick="searchFunction()">Search</button>
+                    <div id="searchResult"></div>
                 </div>
-                <div id="searchResult"></div>
                 <img onclick="toggleSearchBox()" class="search" src="img/component/search.png" alt="">
-
 
                 <img src="img/component/shopping-cart.png" alt="Cart Icon" class="cart-icon">
                 <div id="user-profile">
