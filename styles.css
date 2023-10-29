@@ -122,3 +122,28 @@ h6{
     margin-bottom: 0px;
     padding-bottom: 0px;
 }
+
+.airpods h1{
+    font-size: 80px;
+    text-align: center; 
+    padding-bottom: 23px;
+   
+}
+
+.airpods h2{
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 0px;
+}
+
+.airpods p{
+    padding-top: 0px;
+    text-align: center;
+    font-size: 30px; 
+
+}
+
+.airpods{
+    
+    align-items: center; /* Vertically center the items */
+}

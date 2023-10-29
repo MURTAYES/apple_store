@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <header>
+    <?php
+    include('header.php');
+    ?>
   </header>
     <div class= "black">
     <div class="hc">
@@ -23,5 +26,7 @@
     </div>
     </div>
 
-    
+    <?php
+include('footer.php');
+?>
 </html>
