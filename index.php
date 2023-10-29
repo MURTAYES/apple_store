@@ -114,9 +114,10 @@
     <div class="text-container1">
         <h1>iphone 15 pro</h1>
         <p>Titanium.So strong.So light.So pro</p>
-        <a href="#">
+        <a href="#" onclick="addToCard(115)">
             <button class="button">Buy Now</button>
         </a>
+
     </div>
 </section>
 <section id="section2">
