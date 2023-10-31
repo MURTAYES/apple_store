@@ -64,7 +64,7 @@ if (isset($_SESSION["user_id"])) {
                 <img src="img/component/apple.png" alt="Logo">
             </div>
             <ul class="menu">
-                <li><a href="catagory.php?catid=3">Mac</a></li>
+                <li><a href="mac.html">Mac</a></li>
                 <li><a href="iPad.html"> iPad</a></li>
                 <li><a href="iphone.php">iPhone</a></li>
                 <li><a href="watch.html"> Watch</a></li>

@@ -1,111 +1,195 @@
+<?php
+include('side.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile Page</title>
+    <title>Profile</title>
+    <style>
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        .content .form {
+            width: 80%;
+        }
+
+        .content .form .input_field {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .content .form .input_field img {
+            height: 80px;
+            width: 80px;
+        }
+
+        .content .form .input_field label {
+            width: 200px;
+            margin-right: 10px;
+            font-size: 15px;
+        }
+
+        .content .form .input_field .input {
+            width: 100%;
+            outline: none;
+            border: 1px solid #333;
+            font-size: 15px;
+            padding: 8px 10px;
+            border-radius: 3px;
+        }
+
+        .content .form .input_field textarea {
+            width: 100%;
+            outline: none;
+            border: 1px solid #333;
+            font-size: 15px;
+            padding: 8px 10px;
+            border-radius: 3px;
+            height: 80px;
+            resize: none;
+        }
+
+        .content .form .input_field select {
+            width: 100%;
+            position: relative;
+            height: 40px;
+            border: 1px solid #333;
+            border-radius: 3px;
+        }
+
+        .content .form .input_field select {
+            padding: 8px 10px;
+        }
+
+        .content .form .input_field a {
+            color: #333;
+            font-size: 15px;
+            margin-top: 8px;
+        }
+
+        .content .form .input_field a:hover {
+            color: #555;
+        }
+
+        .content .form .input_field .check {
+            width: 18px;
+            height: 18px;
+            margin-top: 10px;
+        }
+
+        .content .form .input_field .btn {
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 15px;
+            border: 0;
+            background-color: #333;
+            color: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .content .form .input_field .btn:hover {
+            background-color: #555;
+        }
+
+        /* Add some styling to the custom upload button */
+        .custom_upload_button,
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 20px;
+        }
+
+        /* Style the input field to be hidden */
+        input[type="file"] {
+            display: none;
+        }
+    </style>
 </head>
+
 <body>
-  <section><h1> Profile</h1>
-    <div class = "container">
-    <div class="input_field">
-    <form action="#" method="post" enctype="multipart/form-data">
-        <label for="profile_picture">Choose a profile picture</label>
-        <input type="file" name="profile_picture" id="profile_picture" >
-        <input type="submit" value="Upload">
-</form>
-</div>
-</section>
-<section><style>
-  .button {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 10px;
-    cursor: pointer;
-  }
-</style>
 
-<button class="button" id="shipped-orders">Shipped Orders</button>
-<button class="button" id="pending-orders">Pending Orders</button>
-<button class="button" id="pending-payments">Pending Payments</button>
+    <div class="content">
+        <form action="#" method="post" enctype="multipart/form-data">
+            <div class="title">
+                <h2>User details</h2>
+            </div>
+            <div class="form">
+                <div class="input_field">
+                    <img src="<?php echo $details['img']; ?>" alt="Current Image">
+                    <label for="customImageUpload" class="custom_upload_button">Upload New Image</label>
+                    <input type="file" id="customImageUpload" name="image" style="display: none;">
+                </div>
+                <div class=" input_field">
+                    <label>First Name</label>
+                    <input type="text" value="<?php echo $details['first_name'] ?>" class="input" name="first_name" required>
+                </div>
+                <div class="input_field">
+                    <label>Last Name</label>
+                    <input type="text" value="<?php echo $details['last_name'] ?>" class="input" name="last_name" required>
+                </div>
+                <div class="input_field">
+                    <label>Email Address</label>
+                    <input type="text" value="<?php echo $details['email'] ?>" class="input" name="email" required>
+                </div>
+                <div class="input_field">
+                    <label>Phone Number</label>
+                    <input type="text" value="<?php echo $details['phone'] ?>" class="input" name="phone" required>
+                </div>
+                <div class="input_field">
+                    <label>Address</label>
+                    <input type="text" value="<?php echo $details['address'] ?>" class="input" name="address" required>
+                </div>
+                <div class="input_field">
+                    <label>Password</label>
+                    <input type="password" class="input" name="password" required>
+                </div>
+                <div class="input_field">
+                    <input type="submit" value="Update details" class="btn" name="update">
+                </div>
+            </div>
+        </form>
 
-</section>
-<section>
-<div id="content">
-        <div class="orders-header">
-            <h1>Orders delivered</h1>
-            <a href="com/orderhistory.php"><img src="../img/component/history.png" alt=""></a>
-        </div>
+        <?php
+        if (isset($_POST['update'])) {
+            $first_name = $_POST["first_name"];
+            $last_name=$_POST["last_name"];
+            $email = $_POST['email'];
+            $phone = $_POST['phone'];
+            $address = $_POST['address'];
+            $password = $_POST['password'];
 
-        <table>
-            <tr>
-                <th>Order Status</th>
-                <th>Order ID</th>
-                <th>Customer Name</th>
-                <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Image</th>
-                <th>Action</th>
-            </tr>
-            <tbody>
-                <?php
-                // Query to fetch orders, customers, and product information
-                $sql = "SELECT o.order_id, o.order_status, u.first_name, p.name, p.img, oi.quantity
-                        FROM orders o
-                         JOIN users u ON o.customer_id = u.user_id
-                         JOIN order_items oi ON o.order_id = oi.order_id
-                         JOIN products p ON oi.product_id = p.product_id
-                        WHERE o.order_status = 'delivered'";
+            //image storing
+            if ($_FILES['image']['name']) {
+                $targetDirectory = 'img/';
+                $imageFileName = $id . '_' . $_FILES['image']['name'];
+                $targetPath = $targetDirectory . $imageFileName;
+                move_uploaded_file($_FILES['image']['tmp_name'], $targetPath);
+                $sql = "UPDATE users SET  first_name = '$first_name',last_name='$last_name', email = '$email',address='$address', password = '$password', img = '$targetPath' WHERE user_id = '$id'";
+            } else {
+                $sql = "UPDATE users SET  first_name = '$first_name',last_name='$last_name', email = '$email',address='$address', password = '$password' WHERE user_id = '$id'";
+            }
 
-
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>
-                        <td>{$row['order_status']}</td>
-                        <td>{$row['order_id']}</td>
-                        <td>{$row['first_name']}</td>
-                        <td>{$row['name']}</td>
-                        <td>{$row['quantity']}</td>
-                        <td><img src='" . $row['img'] . "'></td>
-                        <td>
-                          <a href='com/status.php?oid={$row['order_id']}'>Action</a>
-                        </td>
-                    </tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='6'>No orders found.</td></tr>";
-                }
-
-                // Close the database connection
-                mysqli_close($conn);
-                ?>
-            </tbody>
-        </table>
+            //performing quary
+            if (mysqli_query($conn, $sql)) {
+                echo "User information updated successfully. Please refresh your page to see the update";
+                echo '<a href="dashboard.php"><button >Refresh</button></a>';
+            } else {
+                echo "Error updating user information: " . mysqli_error($conn);
+            }
+        }
+        $conn->close();
+        ?>
     </div>
-</section>
 </body>
+
 </html>
-<?php
-include "../db_connection.php";
-echo "Welcome user";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $uploadDir = "uploads/"; // Create a directory to store uploaded files
-    $uploadFile = $uploadDir . basename($_FILES["profile_picture"]["name"]);
-
-    if (move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $uploadFile)) {
-        echo nl2br("\n Profile picture uploaded successfully!");
-        // You can save the $uploadFile path to a database or use it as needed.
-    } else {
-        echo "\n Sorry, there was an error uploading your file.";
-    }
-}
-?>
-
