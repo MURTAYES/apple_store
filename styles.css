@@ -38,28 +38,99 @@ h6{
 }
 
 
-.card {
+/*.card {
     width: 500px; /* Set the width of the card */
-    height:500px;
+    /*height:500px;
     border: 1px solid #ccc; /* Add a border around the card */
-    border-radius: 5px; /* Add rounded corners to the card */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow effect */
-    padding: 20px; /* Add padding inside the card */
-    text-align: center; /* Center-align content */
-}
+    /*border-radius: 5px; /* Add rounded corners to the card */
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow effect */
+    /*padding: 20px; /* Add padding inside the card */
+    /*text-align: center; /* Center-align content */
+/*}
 .card img {
     max-width: 100%; /* Ensure the image does not exceed the card's width */
-}
+/*}
 .card h2 {
     font-size: 24px; /* Set the title font size */
-    margin: 10px 0; /* Add some margin below the title */
-}
+    /*margin: 10px 0; /* Add some margin below the title */
+/*}
 
 /* Style the card content */
-.card p {
+/*.card p {
     font-size: 16px; /* Set the content font size */
+/*}*/
+
+main .card{
+    max-width: 300px;
+    flex: 1 1 210px;
+    text-align: center;
+    height: 420px;
+    border: 1px solid lightgray;
+    margin: 20px;
 }
 
+main .card .image{
+    height: 50%;
+    margin-bottom: 20px;
+}
+
+main .card .image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+main .card .caption{
+    padding-left: 1em;
+    text-align: left;
+    line-height: 3em;
+    height: 25%;
+}
+
+main .card .caption p{
+    font-size: 1.5rem;
+}
+
+main .card button{
+    border: 2px solid black;
+    padding: 1em;
+    width: 80%;
+    cursor: pointer;
+    margin-top: 2em;
+    font-weight: bold;
+    position: relative;
+}
+
+main .card button:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    background-color: black;
+    transition: all .5s;
+    margin: 0;
+}
+
+main .card button::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    background-color: black;
+    transition: all .5s;
+}
+
+main .card button:hover::before{
+    width: 30%;
+}
+
+main .card button:hover::after{
+    width: 30%;
+}
 .black{
     background-color: black;
     color: white; 

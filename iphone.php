@@ -1,4 +1,8 @@
-
+   <?php
+   include('db_connection.php');
+   $sql = "SELECT * FROM products"; 
+   $all_product = $conn->query($sql); 
+   ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,16 +29,15 @@ include('header.php');
     </div>
 
     <div class= "newphoria">
-        <div class="hc">
+      <div class="hc">
           <h6>New</h6>
           <h2>iPhone 15</h2>
           <h1>Newphoria</h1>
           <p>From $799 or $33.29/mo. for 24 mo.2</p>
           <button class="custom-button">Buy</button>
           <img src="newphoria.png" class="fullwidth">
-
-        </div>
-        </div>
+       </div>
+    </div>
 
         <div class="container">
             <div class="image">
@@ -49,7 +52,25 @@ include('header.php');
             </div>
         </div>
 
-        <?php
-include('footer.php');
-?>
+        <main>
+          <?php
+          while($row=mysqli_fetch_assoc($all_product)){
+          ?>
+           <div class="card">
+           <div class="image">
+               <img src="<?php echo $row["product_image"]; ?>" alt="">
+           </div>
+           <div class="caption">
+            <p class="product_name"><?php echo $row["product_name"];  ?></p>
+            <p class="price"><b>$<?php echo $row["price"]; ?></b></p>
+            </div>
+            <button class="add" data-id="<?php echo $row["product_id"];  ?>">Add to cart</button>
+            </div>
+            <?php
+          }
+          ?>
+        </main>
+  <?php
+    include('footer.php');
+  ?>
 </html>
