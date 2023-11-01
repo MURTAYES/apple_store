@@ -48,7 +48,6 @@ if (isset($_SESSION["user_id"])) {
             xhr.open('GET', url, true);
             xhr.send();
         }
-
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
