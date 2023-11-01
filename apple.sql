@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 04, 2023 at 04:39 PM
+-- Generation Time: Nov 01, 2023 at 06:54 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -47,6 +47,21 @@ INSERT INTO `admins` (`admin_id`, `img`, `username`, `full_name`, `email`, `pass
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(100) NOT NULL,
+  `user_id` int(100) NOT NULL,
+  `pid` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `price` int(10) NOT NULL,
+  `quantity` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `categories`
 --
 
@@ -86,7 +101,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `customer_id`, `order_date`, `order_status`) VALUES
-(1, 18, '2023-10-04 13:29:59', 'Pending');
+(6, 18, '2023-10-09 15:06:16', 'Delivered'),
+(7, 18, '2023-10-09 15:23:55', 'Pending'),
+(12, 19, '2023-10-27 02:57:54', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -106,8 +123,8 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`order_item_id`, `order_id`, `product_id`, `quantity`) VALUES
-(1, 1, 114, 2),
-(2, 1, 116, 3);
+(7, 6, 114, 2),
+(8, 6, 116, 3);
 
 -- --------------------------------------------------------
 
@@ -120,7 +137,7 @@ CREATE TABLE `products` (
   `img` varchar(400) NOT NULL,
   `name` varchar(255) NOT NULL,
   `colour` text DEFAULT NULL,
-  `price` decimal(10,2) NOT NULL,
+  `price` decimal(60,2) NOT NULL,
   `quantity` int(11) NOT NULL,
   `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -130,11 +147,26 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `img`, `name`, `colour`, `price`, `quantity`, `category_id`) VALUES
-(101, '', 'iphone 15 pro', 'xyz', 1500.00, 10, 1),
-(106, '', 'Iphone 11 pro', 'Iphone 11 pro', 1000.00, 10, 1),
 (114, '../img/product/ip12.png', 'iPhone 12', 'Red', 445.00, 10, 1),
 (115, '../img/product/ip13pro.png', 'iPhone 13 Pro', 'Graphite', 880.41, 5, 1),
-(116, '../img/product/apple_watch9.png', 'Watch Series 9', 'Midnight', 399.00, 5, 5);
+(116, '../img/product/apple_watch9.png', 'Watch Series 9', 'Midnight', 399.00, 5, 5),
+(117, '../img/product/iphone15pro.png', 'Apple iPhone 15 Pro', 'Black Titanium', 999.00, 5, 1),
+(119, '../img/product/ipadmini6.png', 'iPad Mini 6', 'Pink', 384.93, 5, 2),
+(120, '../img/product/ipadpro.png', 'iPad Pro 12.9-inch', 'Silver', 2189.00, 5, 2),
+(121, '../img/product/ipadair.png', 'iPad Air (5th Generation)', 'Blue ', 459.99, 5, 2),
+(122, '../img/product/macAirM1.png', 'MacBook Air Laptop M1 Chip', 'Silver ', 689.99, 5, 3),
+(123, '../img/product/macAirM2.png', 'MacBook Air Laptop with M2 chip', 'Silver ', 1039.49, 5, 3),
+(124, '../img/product/macProM1.png', 'MacBook Pro M1', 'Space Gray', 1999.00, 5, 3),
+(125, '../img/product/MacBook Pro Laptop with M2.png', 'MacBook Pro Laptop with M2 chip', 'Space Gray', 2999.00, 5, 3),
+(126, '../img/product/Apple Watch SE (2nd Gen).png', ' Apple Watch SE (2nd Gen) ', 'Midnight', 279.00, 10, 5),
+(127, '../img/product/Apple Watch Ultra 2.png', 'Apple Watch Ultra 2', 'Titanium', 799.00, 10, 5),
+(128, '../img/product/visionpro.png', 'Vision Pro', 'Midnight', 3499.00, 5, 4),
+(129, '../img/product/Apple AirPods Pro (2nd Generation).png', 'Apple AirPods Pro (2nd Generation)', 'White', 129.00, 20, 6),
+(130, '../img/product/Apple AirPods Pro (2nd Generation).png', 'Apple AirPods Pro (3rd Generation)', 'White', 169.00, 20, 6),
+(131, '../img/product/AirPods Max.png', 'AirPods Max', 'Space Gray', 599.00, 5, 6),
+(132, '../img/product/Apple iPhone 11 Pro Max.png', 'Apple iPhone 11 Pro Max', 'Space Gray', 523.00, 10, 1),
+(133, '../img/product/Apple iPhone SE.png', 'Apple iPhone SE', 'Red', 399.00, 10, 1),
+(134, '../img/product/Apple iPhone 12 Mini.png', 'Apple iPhone 12 Mini', 'Blue', 399.00, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -160,7 +192,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `img`, `first_name`, `last_name`, `gender`, `email`, `phone`, `password`, `address`, `registration_date`) VALUES
-(18, 'img/18_img.png', 'Test', 'User', 'Male', 'test@gmail.com', '0122333', '123', 'Dhaka, Bangladesh', '2023-09-26 06:19:03'),
+(18, 'img/18_stevejobs.1419962539.jpeg', 'Test', 'User', 'Male', 'test@gmail.com', '0122333', '123', 'Dhaka,bangladesh', '2023-09-26 06:19:03'),
 (19, '', 'Second', 'Test User', 'Female', 'second.user@gmail.com', '01111', '12', 'Uganda', '2023-09-26 06:46:14');
 
 --
@@ -173,6 +205,12 @@ INSERT INTO `users` (`user_id`, `img`, `first_name`, `last_name`, `gender`, `ema
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`admin_id`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `categories`
@@ -192,8 +230,8 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`order_item_id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `product_id` (`product_id`);
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `order_items_ibfk_1` (`order_id`);
 
 --
 -- Indexes for table `products`
@@ -219,6 +257,12 @@ ALTER TABLE `admins`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5004;
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
@@ -228,19 +272,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -262,7 +306,7 @@ ALTER TABLE `orders`
 -- Constraints for table `order_items`
 --
 ALTER TABLE `order_items`
-  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
+  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 
 --
