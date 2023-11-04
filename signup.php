@@ -24,7 +24,7 @@ if (isset($_SESSION["user_id"])) {
         <form action="#" method="post">
             <div class="title">
                 <a href="index.php">
-                    <img src="img/component/image/apple(1).png" alt="">
+                    <img src="img/component/apple(1).png" alt="">
                 </a>
                 <h2>SIGN UP FORM</h2>
             </div>
@@ -70,7 +70,7 @@ if (isset($_SESSION["user_id"])) {
                     <label class="check">
                         <input type="checkbox" required>
                     </label>
-                    <a href="">Agrees to terms and condition</a>
+                    <a href="t&c.php">Agrees to terms and condition</a>
                 </div>
                 <div class="input_field">
                     <input type="submit" value="Sign Up" class="btn" name="sign_up">
