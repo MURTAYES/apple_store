@@ -8,8 +8,12 @@ if (isset($_SESSION["user_id"])) {
     $query = "SELECT * FROM users WHERE user_id = $userId";
     $result = mysqli_query($conn, $query);
     $details = mysqli_fetch_assoc($result);
-}
 
+
+    $sql = "SELECT * FROM cart WHERE user_id = $userId";
+    $count_cart_items = mysqli_query($conn, $sql);
+    $total_cart_counts = mysqli_num_rows($count_cart_items);
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +35,6 @@ if (isset($_SESSION["user_id"])) {
         function searchFunction() {
             var input = document.getElementById('searchBox').value;
             var searchResult = document.getElementById('searchResult');
-            // Replace the URL with your PHP file handling the search logic
             var url = 'search.php?search=' + input;
             var xhr = new XMLHttpRequest();
 
@@ -60,7 +63,9 @@ if (isset($_SESSION["user_id"])) {
     <header>
         <nav>
             <div class="logo">
-                <img src="img/component/apple.png" alt="Logo">
+                <a href="index.php">
+                    <img src="img/component/apple.png" alt="Logo">
+                </a>
             </div>
             <ul class="menu">
                 <li><a href="mac.html">Mac</a></li>
@@ -81,10 +86,10 @@ if (isset($_SESSION["user_id"])) {
 
                 <!-- cart -->
                 <div class="dropdown">
-                    <img src="img/component/shopping-cart.png" alt="Cart Icon" class="cart-icon" onclick="toggleCart()">
-                    <div class="dropdown-content" id="cartDropdown">
-                        <!-- Items will be added dynamically here using JavaScript -->
-                    </div>
+                    <a href="cart.php">
+                        <img src="img/component/shopping-cart.png" alt="Cart Icon" class="cart-icon">
+                        <span>(<?php echo $total_cart_counts; ?>)</span>
+                    </a>
                 </div>
 
                 <div id="user-profile">

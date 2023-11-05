@@ -29,4 +29,25 @@ if (isset($_GET['search'])) {
       }
    }
 }
+if (isset($_GET['userId'])) {
+   $userId = $_GET['userId'];
+   $query = "SELECT * FROM cart WHERE user_id = $userId";
+   $result = mysqli_query($conn, $query);
+
+   if ($result) {
+       while ($row = mysqli_fetch_assoc($result)) {
+           echo '<div class="container">';
+           echo '<h3>' . $row['name'] . '</h3>';
+           echo '<p>$' . $row['price'] . '</p>';
+           echo '<p>Quantity: ' . $row['quantity'] . '</p>'; // Include the quantity in the output
+           echo '</div>';
+           echo '</a>';
+           echo '<hr>';
+       }
+   } else {
+       echo "No results found";
+   }
+}
+
+
 ?>
