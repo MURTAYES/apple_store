@@ -88,7 +88,11 @@ if (isset($_SESSION["user_id"])) {
                 <div class="dropdown">
                     <a href="cart.php">
                         <img src="img/component/shopping-cart.png" alt="Cart Icon" class="cart-icon">
-                        <span>(<?php echo $total_cart_counts; ?>)</span>
+                        <?php
+                                if (isset($_SESSION["user_id"])) {
+                                    echo '<span>('.$total_cart_counts.')</span>';
+                                }
+                        ?>
                     </a>
                 </div>
 

@@ -19,15 +19,12 @@ if (isset($_POST['update_qty'])) {
     $message[] = 'Cart quantity updated';
 }
 if (isset($_POST['checkout'])) {
-    // Get the customer_id from the session
     $customer_id = $_SESSION['user_id'];
 
-    // Insert the order with the customer_id and current date
     $insert_query = "INSERT INTO orders (customer_id, order_date, order_status) VALUES ('$customer_id', NOW(), 'Pending')";
     $result = mysqli_query($conn, $insert_query);
 
     if ($result) {
-        // Get the order_id of the newly inserted order
         $last_order_id_query = "SELECT LAST_INSERT_ID() AS new_order_id";
         $result_last_id = mysqli_query($conn, $last_order_id_query);
         if ($result_last_id) {
@@ -35,7 +32,6 @@ if (isset($_POST['checkout'])) {
                 $row = mysqli_fetch_assoc($result_last_id);
                 $new_order_id = $row['new_order_id'];
 
-                // Insert order items for products with IDs in the "order_items" table
                 $cart_query = "SELECT * FROM cart WHERE user_id = $customer_id";
                 $cart_result = mysqli_query($conn, $cart_query);
                 if ($cart_result) {
