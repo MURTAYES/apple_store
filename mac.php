@@ -1,6 +1,6 @@
 <?php
     include('db_connection.php');
-    $sql = "SELECT * FROM products";
+    $sql = "SELECT * FROM products where category_id=3";
     $all_product = $conn->query($sql);
     ?>
 
@@ -17,7 +17,7 @@
       include('header.php');
       ?>
    </header>
-    
+
     <div class="hc">
       <h6>New</h6>
       <h1>MacBook Air 15”</h1>
@@ -50,8 +50,8 @@
    <?php
     include('footer.php');
     ?>
-      
+
     </div>
-    
-  
+
+
 </html>

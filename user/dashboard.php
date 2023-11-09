@@ -181,8 +181,8 @@ include('side.php');
 
             //performing quary
             if (mysqli_query($conn, $sql)) {
-                echo "User information updated successfully. Please refresh your page to see the update";
-                echo '<a href="dashboard.php"><button >Refresh</button></a>';
+                echo '<script>alert("Profile update successfully");</script>';
+                echo '<script>window.location = window.location.href;</script>';
             } else {
                 echo "Error updating user information: " . mysqli_error($conn);
             }

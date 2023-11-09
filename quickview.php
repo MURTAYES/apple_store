@@ -140,37 +140,42 @@ $result_product = mysqli_query($conn, $query__roduct);
    </section>
    <?php
    include 'footer.php';
-if (isset($_POST['add_to_cart'])) {
-    if ($_SESSION['user_id'] == '') {
-        header('location:user_login.php');
-    } else {
-        $pid = $_POST['pid'];
-        $name = $_POST['name'];
-        $price = $_POST['price'];
-        $qty = $_POST['qty'];
+   if (isset($_POST['add_to_cart'])) {
+      if ($_SESSION['user_id'] == '') {
+         // Display a JavaScript popup to prompt the user to log in
+         echo '<script>alert("You need to login first!");</script>';
+         echo '<script>window.location = "login.php";</script>';
+         exit;
+      } else {
+         $pid = $_POST['pid'];
+         $name = $_POST['name'];
+         $price = $_POST['price'];
+         $qty = $_POST['qty'];
 
-        $check_cart_query = "SELECT * FROM cart WHERE name = '$name' AND user_id = {$_SESSION['user_id']}";
-        $check_cart_result = mysqli_query($conn, $check_cart_query);
+         $check_cart_query = "SELECT * FROM cart WHERE name = '$name' AND user_id = {$_SESSION['user_id']}";
+         $check_cart_result = mysqli_query($conn, $check_cart_query);
 
-        if (mysqli_num_rows($check_cart_result) > 0) {
+         if (mysqli_num_rows($check_cart_result) > 0) {
             echo '<script>alert("Already added to cart!");</script>';
             header("Location: index.php");
-        } else {
+            exit;
+         } else {
             $insert_cart_query = "INSERT INTO cart (user_id, pid, name, price, quantity) VALUES ({$_SESSION['user_id']}, '$pid', '$name', $price, $qty)";
             $insert_cart_result = mysqli_query($conn, $insert_cart_query);
             if ($insert_cart_result) {
-                $message[] = 'Added to cart!';
-                echo '<script>alert("Product added to cart!");</script>';
-                echo '<script>window.location = window.location.href;</script>';
-                exit;
+               $message[] = 'Added to cart!';
+               echo '<script>alert("Product added to cart!");</script>';
+               echo '<script>window.location = window.location.href;</script>';
+               exit;
             } else {
-                // Handle insertion error
-                $message[] = 'Error adding to cart!';
+               // Handle insertion error
+               $message[] = 'Error adding to cart!';
             }
-        }
-    }
-}
-?>
+         }
+      }
+   }
+   ?>
+
 
 
 </body>

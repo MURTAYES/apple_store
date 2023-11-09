@@ -5,19 +5,32 @@ include 'db_connection.php';
 
 if (isset($_POST['delete'])) {
     $cart_id = $_POST['cart_id'];
-    $delete_cart_item = $conn->prepare("DELETE FROM cart WHERE id = ?");
-    $delete_cart_item->bind_param("i", $cart_id);
-    $delete_cart_item->execute();
+    $delete_cart_item_query = "DELETE FROM cart WHERE id = '$cart_id'";
+    if (mysqli_query($conn, $delete_cart_item_query)) {
+        // Deletion successful messege
+        echo '<script>alert("Item removed from cart!");</script>';
+        echo '<script>window.location = window.location.href;</script>';
+        exit;
+    } else {
+        echo '<script>alert("Error removing item from cart!");</script>';
+    }
 }
+
 
 if (isset($_POST['update_qty'])) {
     $cart_id = $_POST['cart_id'];
     $qty = $_POST['qty'];
-    $update_qty = $conn->prepare("UPDATE cart SET quantity = ? WHERE id = ?");
-    $update_qty->bind_param("ii", $qty, $cart_id);
-    $update_qty->execute();
-    $message[] = 'Cart quantity updated';
+    $update_qty_query = "UPDATE cart SET quantity = '$qty' WHERE id = '$cart_id'";
+    if (mysqli_query($conn, $update_qty_query)) {
+        // Update successful message
+        echo '<script>alert("Cart quantity updated!");</script>';
+        echo '<script>window.location = window.location.href;</script>';
+        exit;
+    } else {
+        echo '<script>alert("Error updating cart quantity!");</script>';
+    }
 }
+
 if (isset($_POST['checkout'])) {
     $customer_id = $_SESSION['user_id'];
 
@@ -268,38 +281,43 @@ if (isset($_POST['checkout'])) {
             </form>
         </div>
     </section>
-
-
-
     <?php
-    if (isset($_POST['add_to_cart'])) {
+   include 'footer.php';
+   if (isset($_POST['add_to_cart'])) {
+      if ($_SESSION['user_id'] == '') {
+         // Display a JavaScript popup to prompt the user to log in
+         echo '<script>alert("You need to login first!");</script>';
+         echo '<script>window.location = "login.php";</script>';
+         exit;
+      } else {
+         $pid = $_POST['pid'];
+         $name = $_POST['name'];
+         $price = $_POST['price'];
+         $qty = $_POST['qty'];
 
-        if ($_SESSION['user_id'] == '') {
-            header('location:user_login.php');
-        } else {
+         $check_cart_query = "SELECT * FROM cart WHERE name = '$name' AND user_id = {$_SESSION['user_id']}";
+         $check_cart_result = mysqli_query($conn, $check_cart_query);
 
-            $pid = $_POST['pid'];
-            $name = $_POST['name'];
-            $price = $_POST['price'];
-            $qty = $_POST['qty'];
-
-            $check_cart_numbers = $conn->prepare("SELECT * FROM `cart` WHERE name = ? AND user_id = ?");
-            $check_cart_numbers->execute([$name, $_SESSION['user_id']]);
-            $result = $check_cart_numbers->get_result();
-
-            if ($result->num_rows > 0) {
-                $message[] = 'Already added to cart!';
+         if (mysqli_num_rows($check_cart_result) > 0) {
+            echo '<script>alert("Already added to cart!");</script>';
+            header("Location: index.php");
+            exit;
+         } else {
+            $insert_cart_query = "INSERT INTO cart (user_id, pid, name, price, quantity) VALUES ({$_SESSION['user_id']}, '$pid', '$name', $price, $qty)";
+            $insert_cart_result = mysqli_query($conn, $insert_cart_query);
+            if ($insert_cart_result) {
+               $message[] = 'Added to cart!';
+               echo '<script>alert("Product added to cart!");</script>';
+               echo '<script>window.location = window.location.href;</script>';
+               exit;
             } else {
-
-                $insert_cart = $conn->prepare("INSERT INTO `cart` (user_id, pid, name, price, quantity) VALUES (?, ?, ?, ?, ?)");
-                $insert_cart->execute([$_SESSION['user_id'], $pid, $name, $price, $qty]);
-                $message[] = 'Added to cart!';
+               // Handle insertion error
+               $message[] = 'Error adding to cart!';
             }
-        }
-    }
-
-    include 'footer.php';
-    ?>
+         }
+      }
+   }
+   ?>
 
 </body>
 

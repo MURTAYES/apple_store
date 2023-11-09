@@ -79,20 +79,20 @@
             <div class="section about-us">
                 <h2>About Us</h2>
                 <p>Welcome to our online store,
-                   the result of a collaborative effort by a team of passionate students from
-                   North South University.
-                   Our mission is to bring you a seamless and enjoyable shopping experience.
+                    the result of a collaborative effort by a team of passionate students from
+                    North South University.
+                    Our mission is to bring you a seamless and enjoyable shopping experience.
+                </p>
             </div>
             <div class="section product-names">
                 <h2>Our Products</h2>
                 <ul>
-                    <li><a href="#">New Arrivals</a></li>
-                    <li><a href="#">Clothing</a></li>
-                    <li><a href="#">Electronics</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Shoes</a></li>
-                    <li><a href="#">Sales</a></li>
-                    <li><a href="#">Gift Ideas</a></li>
+                    <li><a href="mac.html">Mac</a></li>
+                    <li><a href="iPad.html"> iPad</a></li>
+                    <li><a href="iphone.php">iPhone</a></li>
+                    <li><a href="watch.html"> Watch</a></li>
+                    <li><a href="vision.html">Vision</a></li>
+                    <li><a href="airpods.html">Airpods</a></li>
                 </ul>
             </div>
             <div class="section contact-us">
