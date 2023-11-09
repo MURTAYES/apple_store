@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2023 at 06:54 PM
+-- Generation Time: Nov 09, 2023 at 03:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -59,6 +59,14 @@ CREATE TABLE `cart` (
   `quantity` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `pid`, `name`, `price`, `quantity`) VALUES
+(13, 18, 117, 'Apple iPhone 15 Pro', 999, 1),
+(14, 18, 114, 'iPhone 12', 445, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -102,8 +110,8 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`order_id`, `customer_id`, `order_date`, `order_status`) VALUES
 (6, 18, '2023-10-09 15:06:16', 'Delivered'),
-(7, 18, '2023-10-09 15:23:55', 'Pending'),
-(12, 19, '2023-10-27 02:57:54', 'Pending');
+(13, 18, '2023-11-05 10:19:58', 'Pending'),
+(14, 18, '2023-11-09 14:08:39', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -124,7 +132,8 @@ CREATE TABLE `order_items` (
 
 INSERT INTO `order_items` (`order_item_id`, `order_id`, `product_id`, `quantity`) VALUES
 (7, 6, 114, 2),
-(8, 6, 116, 3);
+(8, 6, 116, 3),
+(17, 13, 116, 4);
 
 -- --------------------------------------------------------
 
@@ -139,34 +148,35 @@ CREATE TABLE `products` (
   `colour` text DEFAULT NULL,
   `price` decimal(60,2) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `category_id` int(11) DEFAULT NULL
+  `category_id` int(11) DEFAULT NULL,
+  `admin_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `img`, `name`, `colour`, `price`, `quantity`, `category_id`) VALUES
-(114, '../img/product/ip12.png', 'iPhone 12', 'Red', 445.00, 10, 1),
-(115, '../img/product/ip13pro.png', 'iPhone 13 Pro', 'Graphite', 880.41, 5, 1),
-(116, '../img/product/apple_watch9.png', 'Watch Series 9', 'Midnight', 399.00, 5, 5),
-(117, '../img/product/iphone15pro.png', 'Apple iPhone 15 Pro', 'Black Titanium', 999.00, 5, 1),
-(119, '../img/product/ipadmini6.png', 'iPad Mini 6', 'Pink', 384.93, 5, 2),
-(120, '../img/product/ipadpro.png', 'iPad Pro 12.9-inch', 'Silver', 2189.00, 5, 2),
-(121, '../img/product/ipadair.png', 'iPad Air (5th Generation)', 'Blue ', 459.99, 5, 2),
-(122, '../img/product/macAirM1.png', 'MacBook Air Laptop M1 Chip', 'Silver ', 689.99, 5, 3),
-(123, '../img/product/macAirM2.png', 'MacBook Air Laptop with M2 chip', 'Silver ', 1039.49, 5, 3),
-(124, '../img/product/macProM1.png', 'MacBook Pro M1', 'Space Gray', 1999.00, 5, 3),
-(125, '../img/product/MacBook Pro Laptop with M2.png', 'MacBook Pro Laptop with M2 chip', 'Space Gray', 2999.00, 5, 3),
-(126, '../img/product/Apple Watch SE (2nd Gen).png', ' Apple Watch SE (2nd Gen) ', 'Midnight', 279.00, 10, 5),
-(127, '../img/product/Apple Watch Ultra 2.png', 'Apple Watch Ultra 2', 'Titanium', 799.00, 10, 5),
-(128, '../img/product/visionpro.png', 'Vision Pro', 'Midnight', 3499.00, 5, 4),
-(129, '../img/product/Apple AirPods Pro (2nd Generation).png', 'Apple AirPods Pro (2nd Generation)', 'White', 129.00, 20, 6),
-(130, '../img/product/Apple AirPods Pro (2nd Generation).png', 'Apple AirPods Pro (3rd Generation)', 'White', 169.00, 20, 6),
-(131, '../img/product/AirPods Max.png', 'AirPods Max', 'Space Gray', 599.00, 5, 6),
-(132, '../img/product/Apple iPhone 11 Pro Max.png', 'Apple iPhone 11 Pro Max', 'Space Gray', 523.00, 10, 1),
-(133, '../img/product/Apple iPhone SE.png', 'Apple iPhone SE', 'Red', 399.00, 10, 1),
-(134, '../img/product/Apple iPhone 12 Mini.png', 'Apple iPhone 12 Mini', 'Blue', 399.00, 5, 1);
+INSERT INTO `products` (`product_id`, `img`, `name`, `colour`, `price`, `quantity`, `category_id`, `admin_id`) VALUES
+(114, '../img/product/ip12.png', 'iPhone 12', 'Red', 445.00, 10, 1, 5003),
+(115, '../img/product/ip13pro.png', 'iPhone 13 Pro', 'Graphite', 880.41, 5, 1, 5003),
+(116, '../img/product/apple_watch9.png', 'Watch Series 9', 'Midnight', 399.00, 5, 5, 5003),
+(117, '../img/product/iphone15pro.png', 'Apple iPhone 15 Pro', 'Black Titanium', 999.00, 5, 1, 5003),
+(119, '../img/product/ipadmini6.png', 'iPad Mini 6', 'Pink', 384.93, 5, 2, 5003),
+(120, '../img/product/ipadpro.png', 'iPad Pro 12.9-inch', 'Silver', 2189.00, 5, 2, 5003),
+(121, '../img/product/ipadair.png', 'iPad Air (5th Generation)', 'Blue ', 459.99, 5, 2, 5003),
+(122, '../img/product/macAirM1.png', 'MacBook Air Laptop M1 Chip', 'Silver ', 689.99, 5, 3, 5003),
+(123, '../img/product/macAirM2.png', 'MacBook Air Laptop with M2 chip', 'Silver ', 1039.49, 5, 3, 5003),
+(124, '../img/product/macProM1.png', 'MacBook Pro M1', 'Space Gray', 1999.00, 5, 3, 5003),
+(125, '../img/product/MacBook Pro Laptop with M2.png', 'MacBook Pro Laptop with M2 chip', 'Space Gray', 2999.00, 5, 3, 5003),
+(126, '../img/product/Apple Watch SE (2nd Gen).png', ' Apple Watch SE (2nd Gen) ', 'Midnight', 279.00, 10, 5, 5003),
+(127, '../img/product/Apple Watch Ultra 2.png', 'Apple Watch Ultra 2', 'Titanium', 799.00, 10, 5, 5003),
+(128, '../img/product/visionpro.png', 'Vision Pro', 'Midnight', 3499.00, 5, 4, 5003),
+(129, '../img/product/Apple AirPods Pro (2nd Generation).png', 'Apple AirPods Pro (2nd Generation)', 'White', 129.00, 20, 6, 5003),
+(130, '../img/product/Apple AirPods Pro (2nd Generation).png', 'Apple AirPods Pro (3rd Generation)', 'White', 169.00, 20, 6, 5003),
+(131, '../img/product/AirPods Max.png', 'AirPods Max', 'Space Gray', 599.00, 5, 6, 5003),
+(132, '../img/product/Apple iPhone 11 Pro Max.png', 'Apple iPhone 11 Pro Max', 'Space Gray', 523.00, 10, 1, 5003),
+(133, '../img/product/Apple iPhone SE.png', 'Apple iPhone SE', 'Red', 399.00, 10, 1, 5003),
+(134, '../img/product/Apple iPhone 12 Mini.png', 'Apple iPhone 12 Mini', 'Blue', 399.00, 5, 1, 5003);
 
 -- --------------------------------------------------------
 
@@ -238,7 +248,8 @@ ALTER TABLE `order_items`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`),
-  ADD KEY `category_id` (`category_id`);
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `fk_admin` (`admin_id`);
 
 --
 -- Indexes for table `users`
@@ -260,7 +271,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -272,13 +283,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -313,6 +324,7 @@ ALTER TABLE `order_items`
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
+  ADD CONSTRAINT `fk_admin` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`admin_id`),
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
 COMMIT;
 
