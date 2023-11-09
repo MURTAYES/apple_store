@@ -1,6 +1,6 @@
    <?php
     include('db_connection.php');
-    $sql = "SELECT * FROM products";
+    $sql = "SELECT * FROM products where category_id=1";
     $all_product = $conn->query($sql);
     ?>
    <!DOCTYPE html>

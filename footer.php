@@ -3,20 +3,36 @@
 
 <head>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            background-color: #f9f9f9;
+            padding: 20px 0;
+        }
+
         .section-container {
             display: flex;
-            height: 40vh;
-            background-color: #e6e6e6;
+            justify-content: space-around;
+            padding: 20px;
         }
 
         .section {
             flex: 1;
-            padding: 20px;
+            padding: 0 20px;
         }
 
         h2 {
             font-size: 24px;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        p {
+            color: #555;
         }
 
         ul {
@@ -25,34 +41,35 @@
         }
 
         li {
-            padding: 5px 0;
+            padding: 8px 0;
         }
 
         li a {
             text-decoration: none;
-            color: #000;
-        }
-
-        .copyright {
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        .copyright a {
-            margin-left: 10px;
-            color: #000;
+            color: #333;
         }
 
         hr {
-            margin: 10px 0;
+            margin: 30px 0;
             border: none;
-            border-top: 1px solid #ccc;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer-content {
+            text-align: center;
+            color: #777;
+            padding: 20px;
+        }
+
+        .footer-content a {
+            color: #777;
+            text-decoration: none;
+            margin-left: 15px;
         }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>E-commerce Website</title>
 </head>
 
 <body>
@@ -61,29 +78,32 @@
         <div class="section-container">
             <div class="section about-us">
                 <h2>About Us</h2>
-                <p>Include a brief description of your company or organization here.</p>
+                <p>Welcome to our online store,
+                   the result of a collaborative effort by a team of passionate students from
+                   North South University.
+                   Our mission is to bring you a seamless and enjoyable shopping experience.
             </div>
             <div class="section product-names">
                 <h2>Our Products</h2>
                 <ul>
-                    <li><a href="#">Store</a></li>
-                    <li><a href="#">Mac</a></li>
-                    <li><a href="#">iPad</a></li>
-                    <li><a href="#">iPhone</a></li>
-                    <li><a href="#">Watch</a></li>
-                    <li><a href="#">Vision</a></li>
-                    <li><a href="#">AirPods</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Clothing</a></li>
+                    <li><a href="#">Electronics</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Shoes</a></li>
+                    <li><a href="#">Sales</a></li>
+                    <li><a href="#">Gift Ideas</a></li>
                 </ul>
             </div>
             <div class="section contact-us">
                 <h2>Contact Us</h2>
-                <p>Email: example@example.com</p>
+                <p>Email: support@example.com</p>
                 <p>Phone: 123-456-7890</p>
             </div>
         </div>
         <hr>
-        <div class="copyright">
-            &copy; 2023 Your Company Name
+        <div class="footer-content">
+            &copy; 2023 Team apple_store. All rights reserved.
             <a href="t&c.php">Terms and Conditions</a>
         </div>
     </footer>

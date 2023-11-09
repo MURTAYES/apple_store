@@ -139,34 +139,38 @@ $result_product = mysqli_query($conn, $query__roduct);
 
    </section>
    <?php
-    if (isset($_POST['add_to_cart'])) {
+   include 'footer.php';
+if (isset($_POST['add_to_cart'])) {
+    if ($_SESSION['user_id'] == '') {
+        header('location:user_login.php');
+    } else {
+        $pid = $_POST['pid'];
+        $name = $_POST['name'];
+        $price = $_POST['price'];
+        $qty = $_POST['qty'];
 
-        if ($_SESSION['user_id'] == '') {
-            header('location:user_login.php');
+        $check_cart_query = "SELECT * FROM cart WHERE name = '$name' AND user_id = {$_SESSION['user_id']}";
+        $check_cart_result = mysqli_query($conn, $check_cart_query);
+
+        if (mysqli_num_rows($check_cart_result) > 0) {
+            echo '<script>alert("Already added to cart!");</script>';
+            header("Location: index.php");
         } else {
-
-            $pid = $_POST['pid'];
-            $name = $_POST['name'];
-            $price = $_POST['price'];
-            $qty = $_POST['qty'];
-
-            $check_cart_numbers = $conn->prepare("SELECT * FROM `cart` WHERE name = ? AND user_id = ?");
-            $check_cart_numbers->execute([$name, $_SESSION['user_id']]);
-            $result = $check_cart_numbers->get_result();
-
-            if ($result->num_rows > 0) {
-                $message[] = 'Already added to cart!';
-            } else {
-
-                $insert_cart = $conn->prepare("INSERT INTO `cart` (user_id, pid, name, price, quantity) VALUES (?, ?, ?, ?, ?)");
-                $insert_cart->execute([$_SESSION['user_id'], $pid, $name, $price, $qty]);
+            $insert_cart_query = "INSERT INTO cart (user_id, pid, name, price, quantity) VALUES ({$_SESSION['user_id']}, '$pid', '$name', $price, $qty)";
+            $insert_cart_result = mysqli_query($conn, $insert_cart_query);
+            if ($insert_cart_result) {
                 $message[] = 'Added to cart!';
+                echo '<script>alert("Product added to cart!");</script>';
+                echo '<script>window.location = window.location.href;</script>';
+                exit;
+            } else {
+                // Handle insertion error
+                $message[] = 'Error adding to cart!';
             }
         }
     }
-
-    include 'footer.php';
-    ?>
+}
+?>
 
 
 </body>
