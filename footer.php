@@ -87,12 +87,12 @@
             <div class="section product-names">
                 <h2>Our Products</h2>
                 <ul>
-                    <li><a href="mac.html">Mac</a></li>
-                    <li><a href="iPad.html"> iPad</a></li>
+                    <li><a href="mac.php">Mac</a></li>
+                    <li><a href="iPad.php"> iPad</a></li>
                     <li><a href="iphone.php">iPhone</a></li>
-                    <li><a href="watch.html"> Watch</a></li>
-                    <li><a href="vision.html">Vision</a></li>
-                    <li><a href="airpods.html">Airpods</a></li>
+                    <li><a href="watch.php"> Watch</a></li>
+                    <li><a href="vision.php">Vision</a></li>
+                    <li><a href="airpods.php">Airpods</a></li>
                 </ul>
             </div>
             <div class="section contact-us">

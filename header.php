@@ -69,11 +69,11 @@ if (isset($_SESSION["user_id"])) {
             </div>
             <ul class="menu">
                 <li><a href="mac.php">Mac</a></li>
-                <li><a href="iPad.html"> iPad</a></li>
+                <li><a href="iPad.php"> iPad</a></li>
                 <li><a href="iphone.php">iPhone</a></li>
                 <li><a href="watch.php"> Watch</a></li>
                 <li><a href="vision.php">Vision</a></li>
-                <li><a href="airpods.html">Airpods</a></li>
+                <li><a href="airpods.php">Airpods</a></li>
             </ul>
             <div class="utility">
 

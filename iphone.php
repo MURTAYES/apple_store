@@ -39,6 +39,16 @@
          padding-top: 10px;
        }
 
+       #section3 {
+         display: flex;
+         align-items: flex-start;
+         justify-content: center;
+         height: 100vh;
+         background-image: url('img/component/ip.jpg');
+         background-size: cover;
+         background-repeat: no-repeat;
+       }
+
        .button {
          padding: 10px 20px;
          background-color: #2381DB;
@@ -158,8 +168,9 @@
        <a href="quickview.php?pid=117">
          <button class="button">Buy Now</button>
        </a>
-
      </div>
+   </section>
+   <section id="section3">
    </section>
    <section class="products">
      <h1 class="heading">Iphone</h1>

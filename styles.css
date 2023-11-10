@@ -6,13 +6,13 @@ h1, h2 {
 
 .hc {
     display: flex;
-    align-items: center; /*centering horizontally*/ 
-    flex-direction: column; 
+    align-items: center; /*centering horizontally*/
+    flex-direction: column;
     height: 100vh; /* Optional, sets the container's height to the viewport height */
 }
 
 h1{
-    font-size: 50px; 
+    font-size: 50px;
 }
 h2{
         padding-bottom: 20px; /* Removes margin */
@@ -20,45 +20,22 @@ h2{
 }
 
 h6{
-    padding-top: 5px; 
+    padding-top: 5px;
     font-family: "San Francisco", sans-serif;
-    color: orangered; 
-    padding-bottom: 5px; 
+    color: orangered;
+    padding-bottom: 5px;
     font-size: 20px;
 
 }
 
 .custom-button {
-    background-color: #007bff; 
-    color: #fff; 
-    padding: 10px 20px; 
-    border: none; 
-    border-radius: 15px; 
-    cursor: pointer; 
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
 }
-
-
-/*.card {
-    width: 500px; /* Set the width of the card */
-    /*height:500px;
-    border: 1px solid #ccc; /* Add a border around the card */
-    /*border-radius: 5px; /* Add rounded corners to the card */
-    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow effect */
-    /*padding: 20px; /* Add padding inside the card */
-    /*text-align: center; /* Center-align content */
-/*}
-.card img {
-    max-width: 100%; /* Ensure the image does not exceed the card's width */
-/*}
-.card h2 {
-    font-size: 24px; /* Set the title font size */
-    /*margin: 10px 0; /* Add some margin below the title */
-/*}
-
-/* Style the card content */
-/*.card p {
-    font-size: 16px; /* Set the content font size */
-/*}*/
 
 main .card{
     max-width: 300px;
@@ -133,12 +110,12 @@ main .card button:hover::after{
 }
 .black{
     background-color: black;
-    color: white; 
-    border: solid black; 
+    color: white;
+    border: solid black;
 }
 
 .fullwidth{
-    width: 100%; 
+    width: 100%;
 }
 
 .container {
@@ -148,8 +125,8 @@ main .card button:hover::after{
 }
 
 .image {
-    flex: 1; 
-    margin-right: 20px; 
+    flex: 1;
+    margin-right: 20px;
 }
 
 .text {
@@ -165,7 +142,7 @@ main .card button:hover::after{
 }
 
 .footercenter{
-    text-align: center; 
+    text-align: center;
     margin-bottom: 20px;
 
 }
@@ -173,7 +150,7 @@ main .card button:hover::after{
 .ipad{
     text-align: center;
     background-color: black;
-    color: white; 
+    color: white;
 }
 
 .ipad h1{
@@ -196,9 +173,9 @@ main .card button:hover::after{
 
 .airpods h1{
     font-size: 80px;
-    text-align: center; 
+    text-align: center;
     padding-bottom: 23px;
-   
+
 }
 
 .airpods h2{
@@ -210,11 +187,11 @@ main .card button:hover::after{
 .airpods p{
     padding-top: 0px;
     text-align: center;
-    font-size: 30px; 
+    font-size: 30px;
 
 }
 
 .airpods{
-    
+
     align-items: center; /* Vertically center the items */
 }

@@ -1,57 +1,255 @@
 <?php
-    include('db_connection.php');
-    $sql = "SELECT * FROM products where category_id=3";
-    $all_product = $conn->query($sql);
-    ?>
-
+include('db_connection.php');
+$sql = "SELECT * FROM products where category_id=3";
+$product = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mac</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <header>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
+    /*section3*/
+    #section {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      height: 100vh;
+      background-image: url('img/component/macpro.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    #section .text-container {
+      position: absolute;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    #section .text-container h1 {
+      font-size: 30px;
+      display: flex;
+      align-items: center;
+      color: #fff
+    }
+
+    #section .text-container h2 {
+      font-size: 40px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    #section .text-container p {
+      font-size: 25px;
+      padding-top: 10px;
+    }
+
+
+    .button {
+      padding: 10px 20px;
+      background-color: #2381DB;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .button:hover {
+      background-color: #555;
+    }
+
+    .products {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .products .heading {
+      top: 80px;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+      margin: 80px 0;
+    }
+
+    .products .box-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-gap: 30px;
+    }
+
+    .products .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+
+    .products .box form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .products .box img {
+      width: 97px;
+      height: 135px;
+      margin-bottom: 10px;
+    }
+
+    .products .box .name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .products .box .flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .products .box .flex .price {
+      font-size: 16px;
+    }
+
+    .products .box .flex .price span {
+      margin: 0 5px;
+    }
+
+    .products .box .qty {
+      width: 50px;
+      height: 30px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .products .box .btn {
+      padding: 10px 20px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .products .box .btn:hover {
+      background-color: #555;
+    }
+
+    .products .empty {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    #section3 {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      height: 100vh;
+      background-image: url('img/component/air.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  </style>
+  <title>iPhone</title>
+</head>
+<header>
   <?php
-      include('header.php');
-      ?>
-   </header>
-
-    <div class="hc">
-      <h6>New</h6>
-      <h1>MacBook Air 15”</h1>
-      <h2>Impressively big. Impossibly thin.</h2>
-      <p>From $108.25/mo. for 12 mo. or $1299**</p>
-      <button class="custom-button">Buy</button>
-      <img src="macbook1.png">
-
-      <main>
-     <?php
-      while ($row = mysqli_fetch_assoc($all_product)) {
-      ?>
-       <form action="" method="post" class="box">
-         <div class="card">
-           <div class="image">
-             <img src="img/<?php echo $row["img"]; ?>" alt="">
-           </div>
-           <div class="caption">
-             <p class="product_name"><?php echo $row["name"];  ?></p>
-             <p class="price"><b>$<?php echo $row["price"]; ?></b></p>
-           </div>
-           <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1">
-           <input type="submit" value="add to cart" class="btn" name="add_to_cart">
-         </div>
-       </form>
-     <?php
-      }
-      ?>
-   </main>
-   <?php
-    include('footer.php');
+  include('header.php');
+  ?>
+</header>
+<?php include 'header.php'; ?>
+<section id="section">
+  <div class="text-container">
+    <h1>The new</h1>
+    <h2>MacBook Pro</h2>
+    <a href="quickview.php?pid=124">
+      <button class="button">Buy Now</button>
+    </a>
+  </div>
+</section>
+<section id="section3">
+</section>
+<section class="products">
+  <h1 class="heading">Mac</h1>
+  <div class="box-container">
+    <?php
+    if ($product->num_rows > 0) {
+      while ($row = $product->fetch_assoc()) {
     ?>
 
-    </div>
-
+        <div class="box">
+          <form action="" method="post">
+            <input type="hidden" name="pid" value="<?= $row['product_id']; ?>">
+            <input type="hidden" name="name" value="<?= $row['name']; ?>">
+            <input type="hidden" name="price" value="<?= $row['price']; ?>">
+            <button type="submit" name="add_to_wishlist" class="fas fa-heart"></button>
+            <a href="quick_view.php?pid=<?= $row['id']; ?>" class="fas fa-eye"></a>
+            <a href="quickview.php?pid=<?= $row['product_id']; ?>">
+              <img src="img/<?= $row['img']; ?>" alt="">
+            </a>
+            <div class="name"><?= $row['name']; ?></div>
+            <div class="flex">
+              <div class="price"><span>$</span><?= $row['price']; ?><span>/-</span></div>
+              <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1">
+            </div>
+            <input type="submit" value="Add to Cart" class="btn" name="add_to_cart">
+          </form>
+        </div>
+    <?php
+      }
+    } else {
+      echo '<p class="empty">No products found!</p>';
+    }
+    ?>
+  </div>
+</section>
+<?php
+include('footer.php');
+?>
 
 </html>
+
+<?php
+if (isset($_POST['add_to_cart'])) {
+  if ($_SESSION['user_id'] == '') {
+    header('location:user_login.php');
+  } else {
+    $pid = $_POST['pid'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $qty = $_POST['qty'];
+
+    $check_cart_query = "SELECT * FROM cart WHERE name = '$name' AND user_id = {$_SESSION['user_id']}";
+    $check_cart_result = mysqli_query($conn, $check_cart_query);
+
+    if (mysqli_num_rows($check_cart_result) > 0) {
+      echo '<script>alert("Already added to cart!");</script>';
+      echo '<script>window.location = window.location.href;</script>';
+    } else {
+      $insert_cart_query = "INSERT INTO cart (user_id, pid, name, price, quantity) VALUES ({$_SESSION['user_id']}, '$pid', '$name', $price, $qty)";
+      $insert_cart_result = mysqli_query($conn, $insert_cart_query);
+      if ($insert_cart_result) {
+        $message[] = 'Added to cart!';
+        echo '<script>alert("Product added to cart!");</script>';
+        echo '<script>window.location = window.location.href;</script>';
+        exit;
+      } else {
+        // Handle insertion error
+        $message[] = 'Error adding to cart!';
+      }
+    }
+  }
+}
+?>
