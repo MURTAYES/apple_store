@@ -12,7 +12,6 @@ $result = mysqli_query($conn, $sql);
 $months = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
 $userCountPerMonth = array();
 
-// Assuming you have a MySQLi connection in $conn
 for ($i = 0; $i <= 11; $i++) {
     $query = "SELECT COUNT(*) AS user_count FROM users WHERE MONTH(registration_date) = " . ($i + 1);
     $res = mysqli_query($conn, $query);

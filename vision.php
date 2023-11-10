@@ -158,7 +158,7 @@ $product = $conn->query($sql);
       margin-top: 20px;
     }
   </style>
-  <title>iPhone</title>
+  <title>vision</title>
 </head>
 <header>
   <?php

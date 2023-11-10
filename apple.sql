@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2023 at 03:46 PM
+-- Generation Time: Nov 10, 2023 at 02:36 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -64,8 +64,10 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `pid`, `name`, `price`, `quantity`) VALUES
-(13, 18, 117, 'Apple iPhone 15 Pro', 999, 1),
-(14, 18, 114, 'iPhone 12', 445, 1);
+(14, 18, 114, 'iPhone 12', 445, 1),
+(16, 18, 117, 'Apple iPhone 15 Pro', 999, 1),
+(17, 18, 115, 'iPhone 13 Pro', 880, 1),
+(18, 18, 132, 'Apple iPhone 11 Pro Max', 523, 1);
 
 -- --------------------------------------------------------
 
@@ -271,7 +273,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `categories`

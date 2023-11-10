@@ -143,7 +143,7 @@
          margin-top: 20px;
        }
      </style>
-     <title>iPhone</title>
+     <title>adirpod</title>
    </head>
    <header>
      <?php

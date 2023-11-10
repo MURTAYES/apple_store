@@ -162,7 +162,7 @@ $product = $conn->query($sql);
       background-repeat: no-repeat;
     }
   </style>
-  <title>iPhone</title>
+  <title>Mac</title>
 </head>
 <header>
   <?php

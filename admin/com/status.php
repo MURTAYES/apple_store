@@ -136,7 +136,6 @@ $result = mysqli_fetch_assoc($query);
             </tr>
             <tbody>
                 <?php
-                // Query to fetch orders, customers, and product information
                 $sql = "SELECT o.order_id, o.order_status, u.first_name, p.name, p.img, oi.quantity
                         FROM orders o
                          JOIN users u ON o.customer_id = u.user_id
@@ -159,8 +158,6 @@ $result = mysqli_fetch_assoc($query);
                 } else {
                     echo "<tr><td colspan='6'>No orders found.</td></tr>";
                 }
-
-                // Close the database connection
                 mysqli_close($conn);
                 ?>
             </tbody>
