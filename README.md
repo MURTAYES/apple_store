@@ -5,10 +5,10 @@ The main purpose of this project to introduce ourselves to the concepts of Relat
 
 ## Technologies used:
 
--html
--css
--php
--mysql
+- html
+- css
+- php
+- mysql
 
 ## Getting Started
 
@@ -16,9 +16,7 @@ The main purpose of this project to introduce ourselves to the concepts of Relat
 
 0. Install xampp server:
 
-```
-   https://www.apachefriends.org/download.html
-```
+[XAMPP](https://www.apachefriends.org/download.html)
 
 1. Clone repository:
 
@@ -35,19 +33,28 @@ Git bash
 ```
 CREATE DATABASE apple
 ```
-   
+
  Import sql file to your server
 ```
    apple.sql
 ```
 3. Run the server:
-   
+
    Go to your browser and type:
 
 ```
      http://localhost/apple_store/index.php
 ```
+or [click here](http://localhost/apple_store/index.php)
 
 -------And you are good to go-----------
+## Screenshot
+
+![screenshot](img/component/ss.png)
 
 ## Team Members
+- [SAMNUN MURTAYES JARIF](https://github.com/MURTAYES) samnun.jarif@northsouth.edu
+- [MAISHA](https://github.com/Ma-i-sha) maisha@northsouth.edu
+- [SAIBA ADNAN CHOUDHURY](https://github.com/SaibaAdnan) saiba.adnan@northsouth.edu
+
+
